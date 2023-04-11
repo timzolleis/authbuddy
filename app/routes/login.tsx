@@ -1,38 +1,22 @@
-import { NavLink, Outlet } from '@remix-run/react';
-import { Tab, TabList } from '@tremor/react';
+import { Form, NavLink, Outlet } from '@remix-run/react';
+import { Tab, TabList, TextInput } from '@tremor/react';
+import { Button } from '~/ui/components/button/Button';
 
 const LoginPage = () => {
     return (
-        <main className={'flex items-center justify-center'}>
-            <section
+        <main className={'mt-10 flex flex-col items-center justify-center'}>
+            <div className={'flex items-center gap-2'}>
+                <img src='/resources/authbuddy_logo.png' className={'h-10'} alt='' />
+                <span className={'flex items-center gap-2 rounded bg-red-500 px-3 py-1'}>
+                    <p className={'text-headline-large font-bold'}>AuthBuddy</p>
+                </span>
+            </div>
+            <div
                 className={
-                    'flex flex-col items-center justify-center rounded-md border border-white/10 md:mt-10 md:w-1/2 md:p-10'
+                    'mt-5 rounded-lg border border-white/30 bg-neutral-800 p-5 md:w-1/3 md:p-10'
                 }>
-                <div
-                    className={
-                        'flex w-full items-center justify-between border-b border-neutral-600 text-center'
-                    }>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? `w-full border-b-2 border-neutral-400 px-3`
-                                : `w-full border-none px-3`
-                        }
-                        to={'/login/user'}>
-                        User
-                    </NavLink>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? `w-full border-b-2 border-neutral-400 px-3`
-                                : `w-full border-none px-3`
-                        }
-                        to={'/login/developer'}>
-                        Developer
-                    </NavLink>
-                </div>
                 <Outlet />
-            </section>
+            </div>
         </main>
     );
 };
