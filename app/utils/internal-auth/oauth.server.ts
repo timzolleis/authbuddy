@@ -3,6 +3,7 @@ import type { OauthProvider } from '~/config/internal-auth';
 import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import * as crypto from 'crypto';
 import { redirect } from '@remix-run/node';
+import axios from 'axios';
 
 export class InternalAuthenticator {
     #provider: OauthProvider;
@@ -48,5 +49,23 @@ export class InternalAuthenticator {
             this.#clientId
         }&redirect_uri=${this.#redirectUri}&response_type=code&state=${this.#state}`;
         return redirect(redirectionString);
+    }
+
+    async getAccessToken(code: string) {
+        const response = await axios.post(this.#provider.oauth.token, {
+            client_id: this.#clientId,
+            client_secret: this.#clientSecret,
+            code,
+            redirect_uri: this.#redirectUri,
+        });
+        console.log(response.data);
+        return response.data;
+    }
+
+    async getUserInformation(accessToken: string) {
+        const information = await axios.get(this.#provider.apiUrl, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        return information.data;
     }
 }

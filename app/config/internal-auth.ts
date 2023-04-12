@@ -13,6 +13,7 @@ export const internalAuthConfiguration = {
         },
         discord: {
             name: 'Discord',
+            apiUrl: 'https://api.github.com',
             oauth: {
                 url: 'https://discord.com/oauth2/authorize',
                 token: 'https://discord.com/oauth2/token',
@@ -20,6 +21,7 @@ export const internalAuthConfiguration = {
         },
         google: {
             name: 'Google',
+            apiUrl: 'https://api.github.com',
             oauth: {
                 url: 'https://accounts.google.com/o/oauth2/v2/auth',
                 token: 'https://www.googleapis.com/oauth2/v4/token',
