@@ -5,7 +5,7 @@ export const icon = cva('', {
     variants: {
         size: {
             xs: 'h-4',
-            sm: 'h-10',
+            sm: 'h-6',
             normal: 'h-14',
             xl: 'h-20',
         },
