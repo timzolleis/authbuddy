@@ -35,9 +35,7 @@ export class InternalAuthenticator {
         if (!applicationUrl) {
             throw new EnvRequiredException('APPLICATION_URL');
         }
-        return encodeURIComponent(
-            `${applicationUrl}/internal/auth/${this.#provider.name.toLowerCase()}/callback`
-        );
+        return `${applicationUrl}/internal/auth/${this.#provider.name.toLowerCase()}/callback`;
     }
 
     private generateState() {
@@ -45,10 +43,12 @@ export class InternalAuthenticator {
     }
 
     initialize() {
-        const redirectionString = `${this.#provider.oauth.url}?client_id=${
-            this.#clientId
-        }&redirect_uri=${this.#redirectUri}&response_type=code&state=${this.#state}`;
-        return redirect(redirectionString);
+        const url = new URL(this.#provider.oauth.url);
+        url.searchParams.append('client_id', this.#clientId);
+        url.searchParams.append('redirect_uri', this.#redirectUri);
+        url.searchParams.append('response_type', 'code');
+        url.searchParams.append('state', this.#state);
+        return redirect(url.toString());
     }
 
     async getAccessToken(code: string) {
