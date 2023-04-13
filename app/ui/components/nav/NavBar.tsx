@@ -1,4 +1,7 @@
 import { Link, NavLink } from '@remix-run/react';
+import { useOptionalUser } from '~/utils/hooks/user';
+import { use } from 'ast-types';
+import { UserComponent } from '~/ui/components/user/UserComponent';
 
 export const PageLinks = [
     {
@@ -8,6 +11,7 @@ export const PageLinks = [
 ];
 
 export const NavBar = () => {
+    const user = useOptionalUser();
     return (
         <nav className={'flex items-center justify-between bg-neutral-800 p-4'}>
             <Link to={'/'}>
@@ -19,9 +23,10 @@ export const NavBar = () => {
                 </nav>
             </Link>
             <div className={'flex items-center gap-2 px-5'}>
-                {PageLinks.map((link) => (
-                    <NavigationLink key={link.to} to={link.to} displayName={link.displayName} />
-                ))}
+                {user ? <UserComponent user={user} /> : null}
+                <NavigationLink
+                    to={user ? '/logout' : '/login'}
+                    displayName={user ? 'Logout' : 'Login'}></NavigationLink>
             </div>
         </nav>
     );

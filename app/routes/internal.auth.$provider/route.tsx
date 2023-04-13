@@ -2,13 +2,24 @@ import { DataFunctionArgs, redirect } from '@remix-run/node';
 import { internalAuthConfiguration } from '~/config/internal-auth';
 import { InternalAuthenticator } from '~/utils/internal-auth/oauth.server';
 import { Button } from '~/ui/components/button/Button';
-import { Link } from '@remix-run/react';
+import { Link, Params } from '@remix-run/react';
 import { DangerIcon } from '~/ui/icons/DangerIcon';
 
 function hasProvider(
     providerName: string
 ): providerName is keyof typeof internalAuthConfiguration.providers {
     return providerName in internalAuthConfiguration.providers;
+}
+
+export function getProviderFromParam(params: Params) {
+    const providerName = params.provider;
+    if (!providerName) {
+        throw new Error('Provider missing');
+    }
+    if (!hasProvider(providerName)) {
+        throw new Error('Unavailable Provider');
+    }
+    return new InternalAuthenticator(internalAuthConfiguration.providers[providerName]);
 }
 
 //This component is responsible for redirecting the user to the correct authenticating party

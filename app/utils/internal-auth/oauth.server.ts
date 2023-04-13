@@ -1,16 +1,17 @@
 import * as process from 'process';
-import type { OauthProvider } from '~/config/internal-auth';
-import { EnvRequiredException } from '~/exception/EnvRequiredException';
+import type {OauthProvider} from '~/config/internal-auth';
+import {EnvRequiredException} from '~/exception/EnvRequiredException';
 import * as crypto from 'crypto';
-import { redirect } from '@remix-run/node';
+import {redirect} from '@remix-run/node';
 import axios from 'axios';
+import {GithubInfoProvider} from "~/utils/internal-auth/userinfo";
 
 export class InternalAuthenticator {
     #provider: OauthProvider;
     readonly #clientId: string;
-    #clientSecret: string;
+    readonly #clientSecret: string;
     readonly #redirectUri: string;
-    #state: string;
+    readonly #state: string;
 
     constructor(provider: OauthProvider) {
         const envProviderName = provider.name.toUpperCase();
@@ -52,20 +53,31 @@ export class InternalAuthenticator {
     }
 
     async getAccessToken(code: string) {
-        const response = await axios.post(this.#provider.oauth.token, {
-            client_id: this.#clientId,
-            client_secret: this.#clientSecret,
-            code,
-            redirect_uri: this.#redirectUri,
-        });
-        console.log(response.data);
-        return response.data;
+        const response = await axios.post(
+            this.#provider.oauth.token,
+            {
+                client_id: this.#clientId,
+                client_secret: this.#clientSecret,
+                code,
+                redirect_uri: this.#redirectUri,
+            },
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            }
+        );
+        return response.data?.access_token;
     }
 
     async getUserInformation(accessToken: string) {
-        const information = await axios.get(this.#provider.apiUrl, {
-            headers: { Authorization: `Bearer ${accessToken}` },
-        });
-        return information.data;
+        switch (this.#provider.name) {
+            case "GitHub" : {
+                const informationProvider = new GithubInfoProvider();
+                return informationProvider.getUserInformation(accessToken);
+            }
+
+        }
+
     }
 }
