@@ -1,13 +1,17 @@
 import * as process from 'process';
-import type {OauthProvider} from '~/config/internal-auth';
-import {EnvRequiredException} from '~/exception/EnvRequiredException';
+import type { OauthProvider } from '~/config/internal-auth';
+import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import * as crypto from 'crypto';
-import {redirect} from '@remix-run/node';
+import { redirect } from '@remix-run/node';
 import axios from 'axios';
-import {GithubInfoProvider} from "~/utils/internal-auth/userinfo";
+import {
+    DiscordInfoProvider,
+    GithubInfoProvider,
+    GoogleInfoProvider,
+} from '~/utils/internal-auth/userinfo';
 
 export class InternalAuthenticator {
-    #provider: OauthProvider;
+    readonly #provider: OauthProvider;
     readonly #clientId: string;
     readonly #clientSecret: string;
     readonly #redirectUri: string;
@@ -49,6 +53,7 @@ export class InternalAuthenticator {
         url.searchParams.append('redirect_uri', this.#redirectUri);
         url.searchParams.append('response_type', 'code');
         url.searchParams.append('state', this.#state);
+        url.searchParams.append('scope', this.#provider.oauth.scope);
         return redirect(url.toString());
     }
 
@@ -58,11 +63,13 @@ export class InternalAuthenticator {
             {
                 client_id: this.#clientId,
                 client_secret: this.#clientSecret,
+                grant_type: 'authorization_code',
                 code,
                 redirect_uri: this.#redirectUri,
             },
             {
                 headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
                     Accept: 'application/json',
                 },
             }
@@ -71,13 +78,22 @@ export class InternalAuthenticator {
     }
 
     async getUserInformation(accessToken: string) {
-        switch (this.#provider.name) {
-            case "GitHub" : {
+        const providerActions = {
+            github: function () {
                 const informationProvider = new GithubInfoProvider();
                 return informationProvider.getUserInformation(accessToken);
-            }
-
-        }
-
+            },
+            google: function () {
+                const informationProvider = new GoogleInfoProvider();
+                return informationProvider.getUserInformation(accessToken);
+            },
+            discord: function () {
+                const informationProvider = new DiscordInfoProvider();
+                return informationProvider.getUserInformation(accessToken);
+            },
+        };
+        const key = this.#provider.name.toLowerCase();
+        const action = providerActions[key as keyof typeof providerActions];
+        if (action) return action();
     }
 }
