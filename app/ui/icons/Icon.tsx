@@ -24,3 +24,6 @@ export const icon = cva('', {
 });
 
 export interface IconProps extends VariantProps<typeof icon> {}
+export interface ClickableIconProps extends IconProps {
+    onClick: () => any;
+}

@@ -13,7 +13,7 @@ export const SideNavComponent = () => {
             {filteredMatches.map((match) => (
                 <div
                     key={match.id}
-                    className={'flex items-center gap-2 divide-y divide-white/30 md:grid'}>
+                    className={'flex items-center divide-y divide-white/30 md:grid'}>
                     {match.handle?.nav.links.map((link: { href: string; name: string }) => (
                         <NavLink
                             className={'min-w-max'}
@@ -27,13 +27,16 @@ export const SideNavComponent = () => {
                             }
                             prefetch={'intent'}>
                             {({ isActive }) => (
-                                <div
-                                    className={`rounded-md px-5 py-2 transition-all duration-75 hover:bg-neutral-800 ${
-                                        isActive
-                                            ? 'bg-neutral-800 font-medium '
-                                            : 'text-neutral-400'
-                                    }`}>
-                                    {link.name}
+                                //This essentially creates a "gap" but an actual gap would fuck with the divider
+                                <div className={'py-2'}>
+                                    <div
+                                        className={`rounded-md px-5 py-2 transition-all duration-75 hover:bg-neutral-800 ${
+                                            isActive
+                                                ? 'bg-neutral-800 font-medium '
+                                                : 'text-neutral-400'
+                                        }`}>
+                                        {link.name}
+                                    </div>
                                 </div>
                             )}
                         </NavLink>

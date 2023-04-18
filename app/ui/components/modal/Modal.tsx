@@ -8,7 +8,7 @@ export const Modal = ({
     children,
 }: {
     showModal: boolean;
-    toggleModal: () => any;
+    toggleModal: () => void;
     children: ReactNode;
 }) => {
     useEffect(() => {

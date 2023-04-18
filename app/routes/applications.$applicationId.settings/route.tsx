@@ -13,15 +13,16 @@ import { useModal } from '~/ui/components/modal/Modal';
 import { ConfirmDangerousActionModal } from '~/ui/components/modal/ConfirmDangerousActionModal';
 import { useEffect } from 'react';
 import { Badge } from '~/ui/components/common/Badge';
-import {
-    Action,
-    getAction,
-    isAction,
-} from '~/routes/applications.$applicationId._index/applicationActions';
+
 import {
     changeApplicationStatus,
     deleteApplication,
 } from '~/utils/prisma/models/application.server';
+import {
+    Action,
+    getAction,
+    isAction,
+} from '~/routes/applications.$applicationId.settings/applicationActions';
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
     const user = await requireDeveloper(request);

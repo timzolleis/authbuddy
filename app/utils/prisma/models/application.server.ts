@@ -1,6 +1,50 @@
 import { prisma } from '~/utils/prisma/prisma.server';
 import { tr } from 'date-fns/locale';
 
+export async function findApplication(applicationId: string, requireUser = false, userId?: string) {
+    if (requireUser) {
+        if (!userId) {
+            throw new Error('User ID is required');
+        }
+        return prisma.application.findUnique({
+            where: {
+                id_userId: {
+                    userId,
+                    id: applicationId,
+                },
+            },
+        });
+    }
+    return prisma.application.findUnique({
+        where: {
+            id: applicationId,
+        },
+    });
+}
+
+export async function requireUserApplication(
+    applicationId: string,
+    userId: string,
+    includeSecrets = false
+) {
+    const application = await prisma.application.findUnique({
+        where: {
+            id_userId: {
+                id: applicationId,
+                userId: userId,
+            },
+        },
+        include: {
+            secrets: includeSecrets,
+        },
+    });
+
+    if (application === null) {
+        throw new Error('The application does not exist');
+    }
+    return application;
+}
+
 export async function changeApplicationStatus(
     applicationId: string,
     userId: string,

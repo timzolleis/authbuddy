@@ -15,3 +15,12 @@ export function useOptionalUser(): User | undefined {
     const data = useMatchesData('root');
     return data?.user as User | undefined;
 }
+
+export function getRedactedString() {
+    const min = 10;
+    const max = 32;
+
+    const randomLength = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return '*'.repeat(randomLength);
+}

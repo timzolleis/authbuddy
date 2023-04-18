@@ -3,7 +3,7 @@ import { Outlet } from '@remix-run/react';
 const links = [
     {
         name: 'Settings',
-        href: '',
+        href: 'settings',
     },
     {
         name: 'Secrets',

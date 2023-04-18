@@ -24,9 +24,12 @@ model Application {
 
 model Secret {
   id            String      @id @default(uuid())
-  value         String
+  name          String
+  secret        String
+  hidden        Boolean     @default(false)
   applicationId String
   application   Application @relation(fields: [applicationId], references: [id])
+  createdAt     Float
 }
 
 model User {

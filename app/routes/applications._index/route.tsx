@@ -63,7 +63,7 @@ const Applications = ({ applications }: { applications: Application[] }) => {
 const ApplicationComponent = ({ application }: { application: Application }) => {
     return (
         <Link
-            to={`/applications/${application.id}`}
+            to={`/applications/${application.id}/settings`}
             className={
                 'flex items-center justify-between rounded-md border border-white/30 px-5 py-3 transition duration-200 ease-in-out hover:scale-105 hover:bg-black'
             }>
