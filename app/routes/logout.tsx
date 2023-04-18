@@ -1,4 +1,4 @@
-import { destroyInternalUser } from '~/utils/internal-auth/session.server';
+import { destroyInternalUser } from '~/utils/auth/session.server';
 import { DataFunctionArgs, redirect } from '@remix-run/node';
 
 export const loader = async ({ request }: DataFunctionArgs) => {

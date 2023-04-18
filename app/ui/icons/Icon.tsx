@@ -13,6 +13,9 @@ export const icon = cva('', {
             primary: 'stroke-red-500',
             secondary: 'stroke-white-500',
         },
+        hover: {
+            pointer: 'hover:cursor-pointer',
+        },
     },
     defaultVariants: {
         size: 'xs',

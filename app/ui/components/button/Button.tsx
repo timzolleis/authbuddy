@@ -6,8 +6,9 @@ import { ExternalLinkIcon } from '~/ui/icons/ExternalLinkIcon';
 const button = cva('rounded', {
     variants: {
         color: {
-            primary: 'bg-red-500',
+            primary: 'bg-red-500 disabled:opacity-50 disabled:bg-red-800',
             secondary: 'bg-neutral-900 border border-white/30',
+            danger: 'text-red-500 font-medium bg-neutral-800 border border-red-500/50',
         },
         external: {
             true: '',
@@ -38,11 +39,32 @@ const button = cva('rounded', {
 
 interface ButtonProps extends VariantProps<typeof button> {
     children: ReactNode | string;
+    disabled?: boolean;
+    type?: 'submit' | 'button';
+    onClick?: () => any;
+    value?: string;
 }
 
-export const Button = ({ color, children, external, width, padding, font }: ButtonProps) => {
+export const Button = ({
+    color,
+    children,
+    disabled = false,
+    external,
+    width,
+    padding,
+    font,
+    type = 'submit',
+    onClick,
+    value,
+}: ButtonProps) => {
     return (
-        <button className={button({ color, width, padding, font })}>
+        <button
+            name={'intent'}
+            value={value}
+            disabled={disabled}
+            type={type}
+            className={button({ color, width, padding, font })}
+            onClick={() => (onClick ? onClick() : void 0)}>
             {external ? (
                 <span className={'flex items-center gap-2'}>
                     {children}

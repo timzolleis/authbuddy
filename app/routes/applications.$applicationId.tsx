@@ -2,12 +2,12 @@ import { Outlet } from '@remix-run/react';
 
 const links = [
     {
-        name: 'General',
-        href: 'general',
+        name: 'Settings',
+        href: '',
     },
     {
-        name: 'Configuration',
-        href: 'config',
+        name: 'Secrets',
+        href: 'secrets',
     },
 ];
 

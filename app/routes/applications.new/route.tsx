@@ -6,14 +6,14 @@ import { PageHeader } from '~/ui/components/page/PageHeader';
 import { FormTextArea, FormTextInput } from '~/ui/components/form/FormTextInput';
 import { Button } from '~/ui/components/button/Button';
 import { prisma } from '~/utils/prisma/prisma.server';
-import { requireDeveloperUser } from '~/utils/auth/session.server';
+import { requireDeveloper } from '~/utils/auth/session.server';
 import Applications from '~/routes/applications';
 import { Application } from '.prisma/client';
 import applications from '~/routes/applications';
 
 const errorMessage = (field: string) => `The field ${field} is required`;
 
-function validateApplicationFormData(formData: FormData) {
+export function validateApplicationFormData(formData: FormData) {
     const errors = new Map<string, string>();
     const applicationName = formData.get('applicationName')?.toString();
     if (!applicationName) {
@@ -44,7 +44,7 @@ export const loader = async ({ request, params }: DataFunctionArgs) => {
 };
 
 export const action = async ({ request, params }: DataFunctionArgs) => {
-    const user = await requireDeveloperUser(request);
+    const user = await requireDeveloper(request);
     const formData = await request.formData();
     const validatedData = validateApplicationFormData(formData);
     if (validatedData.errors.size >= 1) {
@@ -69,8 +69,8 @@ const NewApplicationPage = () => {
             <div className={'flex w-full flex-col items-center justify-center'}>
                 <Form method={'POST'} className={'grid w-full gap-2 md:w-1/2'}>
                     <PageHeader divider={true}>New Application</PageHeader>
+                    <ApplicationFormComponent />
                     <div className={'flex items-center gap-2 border-t border-t-white/30 py-2'}>
-                        <ApplicationFormComponent />
                         <Button width={'normal'}>Create application</Button>
                         <Link to={'/applications'}>
                             <Button color={'secondary'}>Cancel</Button>
@@ -84,7 +84,7 @@ const NewApplicationPage = () => {
 
 export const ApplicationFormComponent = ({ application }: { application?: Application }) => {
     return (
-        <div className={'flex w-full flex-col gap-4 md:w-2/3'}>
+        <div className={'flex w-full flex-col gap-4'}>
             <FormTextInput
                 defaultValue={application?.name}
                 required={true}

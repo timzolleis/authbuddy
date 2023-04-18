@@ -1,6 +1,6 @@
 import { DataFunctionArgs, redirect } from '@remix-run/node';
 import { internalAuthConfiguration } from '~/config/internal-auth';
-import { InternalAuthenticator } from '~/utils/internal-auth/oauth.server';
+import { InternalAuthenticator } from '~/utils/auth/oauth.server';
 import { Button } from '~/ui/components/button/Button';
 import { Link, Params } from '@remix-run/react';
 import { DangerIcon } from '~/ui/icons/DangerIcon';

@@ -4,11 +4,7 @@ import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import * as crypto from 'crypto';
 import { redirect } from '@remix-run/node';
 import axios from 'axios';
-import {
-    DiscordInfoProvider,
-    GithubInfoProvider,
-    GoogleInfoProvider,
-} from '~/utils/internal-auth/userinfo';
+import { DiscordInfoProvider, GithubInfoProvider, GoogleInfoProvider } from '~/utils/auth/userinfo';
 
 export class InternalAuthenticator {
     readonly #provider: OauthProvider;

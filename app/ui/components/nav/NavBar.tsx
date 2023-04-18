@@ -2,6 +2,7 @@ import { Link, NavLink } from '@remix-run/react';
 import { useOptionalUser } from '~/utils/hooks/user';
 import { use } from 'ast-types';
 import { UserComponent } from '~/ui/components/user/UserComponent';
+import { Button } from '~/ui/components/button/Button';
 
 export const PageLinks = [
     {
@@ -13,7 +14,7 @@ export const PageLinks = [
 export const NavBar = () => {
     const user = useOptionalUser();
     return (
-        <nav className={'flex items-center justify-between bg-neutral-800 p-4'}>
+        <nav className={'flex items-center justify-between bg-neutral-800 px-5 py-4 md:px-20'}>
             <Link to={'/'}>
                 <nav className={'flex items-center gap-2'}>
                     <img className={'h-6'} src='/resources/authbuddy_logo.png' alt='' />
@@ -22,11 +23,20 @@ export const NavBar = () => {
                     </span>
                 </nav>
             </Link>
-            <div className={'flex items-center gap-2 px-5'}>
+            <div className={'flex items-center gap-2 pl-5'}>
+                {user?.role === 'DEVELOPER' ? (
+                    <nav className={'mr-3'}>
+                        <NavigationLink
+                            to={'/applications'}
+                            displayName={'Applications'}></NavigationLink>
+                    </nav>
+                ) : null}
                 {user ? <UserComponent user={user} /> : null}
-                <NavigationLink
-                    to={user ? '/logout' : '/login'}
-                    displayName={user ? 'Logout' : 'Login'}></NavigationLink>
+                <Link to={user ? '/logout' : '/login'}>
+                    <Button padding={'medium'} color={'secondary'}>
+                        {user ? 'Logout' : 'Login'}
+                    </Button>
+                </Link>
             </div>
         </nav>
     );
@@ -34,7 +44,7 @@ export const NavBar = () => {
 
 const NavigationLink = ({ to, displayName }: { to: string; displayName: string }) => {
     return (
-        <NavLink className={'rounded-md border border-white/30 px-5 py-2'} to={to}>
+        <NavLink className={'font-medium'} to={to}>
             {displayName}
         </NavLink>
     );

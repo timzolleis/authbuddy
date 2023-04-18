@@ -1,13 +1,13 @@
-import { InternalUser } from '~/utils/internal-auth/user.server';
 import axios from 'axios';
 import { internalAuthConfiguration } from '~/config/internal-auth';
 import { GithubUserInformation } from '~/models/auth/internal/github/GithubUserInformationResponse';
 import { GoogleUserInformationResponse } from '~/models/auth/internal/google/GoogleUserInformationResponse';
 import { DiscordUserInformationResponse } from '~/models/auth/internal/discord/DiscordUserInformationResponse';
 import { da } from 'date-fns/locale';
+import { User } from '~/utils/auth/user.server';
 
 interface UserInfoProvider {
-    getUserInformation(accessToken: string): Promise<InternalUser>;
+    getUserInformation(accessToken: string): Promise<User>;
 }
 
 class InfoProvider {
@@ -21,10 +21,10 @@ class InfoProvider {
 }
 
 export class GithubInfoProvider extends InfoProvider implements UserInfoProvider {
-    async getUserInformation(accessToken: string): Promise<InternalUser> {
+    async getUserInformation(accessToken: string): Promise<User> {
         const url = `${internalAuthConfiguration.providers.github.apiUrl}${internalAuthConfiguration.providers.github.api.user}`;
         const data = await this.fetchUserInformation<GithubUserInformation>(url, accessToken);
-        return new InternalUser(data.id.toString(), data.login, data.avatar_url);
+        return new User(data.id.toString(), data.login, data.avatar_url, 'DEVELOPER');
     }
 }
 
@@ -35,7 +35,7 @@ export class GoogleInfoProvider extends InfoProvider implements UserInfoProvider
             url,
             accessToken
         );
-        return new InternalUser(data.sub, data.name, data.picture);
+        return new User(data.sub, data.name, data.picture, 'DEVELOPER');
     }
 }
 
@@ -47,6 +47,6 @@ export class DiscordInfoProvider extends InfoProvider implements UserInfoProvide
             accessToken
         );
         const avatarUrl = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`;
-        return new InternalUser(data.id, data.username, avatarUrl);
+        return new User(data.id, data.username, avatarUrl, 'DEVELOPER');
     }
 }

@@ -2,15 +2,16 @@ import { DataFunctionArgs, defer, json } from '@remix-run/node';
 import { PageHeader } from '~/ui/components/page/PageHeader';
 import { Button } from '~/ui/components/button/Button';
 import { prisma } from '~/utils/prisma/prisma.server';
-import { requireDeveloperUser } from '~/utils/auth/session.server';
+import { requireDeveloper } from '~/utils/auth/session.server';
 import { Await, Link, Outlet, useLoaderData } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Application } from '.prisma/client';
 import { DangerIcon } from '~/ui/icons/DangerIcon';
 import applications from '~/routes/applications';
+import { Badge } from '~/ui/components/common/Badge';
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
-    const user = await requireDeveloperUser(request);
+    const user = await requireDeveloper(request);
     const applications = prisma.application
         .findMany({
             where: {
@@ -62,12 +63,20 @@ const Applications = ({ applications }: { applications: Application[] }) => {
 const ApplicationComponent = ({ application }: { application: Application }) => {
     return (
         <Link
-            to={`/applications/${application.id}/general`}
+            to={`/applications/${application.id}`}
             className={
-                'rounded-md border border-white/30 px-5 py-3 transition duration-200 ease-in-out hover:scale-105 hover:bg-black'
+                'flex items-center justify-between rounded-md border border-white/30 px-5 py-3 transition duration-200 ease-in-out hover:scale-105 hover:bg-black'
             }>
-            <p>{application.name}</p>
-            <p className={'text-xs text-neutral-500'}>{application.homepage}</p>
+            <div>
+                <p>{application.name}</p>
+                <p className={'text-xs text-neutral-500'}>{application.homepage}</p>
+            </div>
+            <p
+                className={`text-xs font-light leading-none ${
+                    application.deactivated ? 'text-red-500' : 'text-green-500'
+                }`}>
+                {application.deactivated ? 'NOT ACTIVE' : 'ACTIVE'}
+            </p>
         </Link>
     );
 };

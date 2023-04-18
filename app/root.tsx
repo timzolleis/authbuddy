@@ -11,18 +11,17 @@ import {
 import styles from './styles/app.css';
 import { DataFunctionArgs, json, LinksFunction } from '@remix-run/node';
 import { AppLayout } from '~/ui/layout/AppLayout';
-import { getInternalUser } from '~/utils/internal-auth/session.server';
+import { getUser } from '~/utils/auth/session.server';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const loader = async ({ request }: DataFunctionArgs) => {
-    const user = await getInternalUser(request);
+    const user = await getUser(request);
     return json({ user });
 };
 
 export default function App() {
     const { user } = useLoaderData<typeof loader>();
-    console.log(user);
     return (
         <html lang='en'>
             <head>
@@ -31,7 +30,7 @@ export default function App() {
                 <Meta />
                 <Links />
             </head>
-            <body>
+            <body className={'bg-neutral-900'}>
                 <AppLayout>
                     <Outlet />
                     <ScrollRestoration />

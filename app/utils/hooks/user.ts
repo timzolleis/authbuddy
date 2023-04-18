@@ -1,6 +1,6 @@
-import {useMatches} from "@remix-run/react";
-import {useMemo} from "react";
-import {InternalUser} from "~/utils/internal-auth/user.server";
+import { useMatches } from '@remix-run/react';
+import { useMemo } from 'react';
+import { User } from '~/utils/auth/user.server';
 
 export function useMatchesData(id: string): Record<string, unknown> | undefined {
     const matchingRoutes = useMatches();
@@ -11,7 +11,7 @@ export function useMatchesData(id: string): Record<string, unknown> | undefined 
     return route?.data;
 }
 
-export function useOptionalUser(): InternalUser | undefined {
+export function useOptionalUser(): User | undefined {
     const data = useMatchesData('root');
-    return data?.user as InternalUser | undefined;
+    return data?.user as User | undefined;
 }

@@ -1,4 +1,4 @@
-import { InternalUser } from '~/utils/internal-auth/user.server';
+import { InternalUser } from '~/utils/auth/user.server';
 
 export const UserComponent = ({ user }: { user: InternalUser }) => {
     return (
