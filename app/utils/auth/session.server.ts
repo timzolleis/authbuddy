@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, redirect } from '@remix-run/node';
+import { createCookieSessionStorage, redirect, Session } from '@remix-run/node';
 import * as process from 'process';
 import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import { User } from '~/utils/auth/user.server';
@@ -19,6 +19,9 @@ const { getSession, commitSession, destroySession } = createCookieSessionStorage
 
 export async function getLoginSession(request: Request) {
     return await getSession(request.headers.get('Cookie'));
+}
+export async function commitLoginSession(session: Session) {
+    return await commitSession(session);
 }
 
 export async function getUser(request: Request): Promise<User | undefined> {

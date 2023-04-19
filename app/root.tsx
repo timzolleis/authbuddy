@@ -11,17 +11,29 @@ import {
 import styles from './styles/app.css';
 import { DataFunctionArgs, json, LinksFunction } from '@remix-run/node';
 import { AppLayout } from '~/ui/layout/AppLayout';
-import { getUser } from '~/utils/auth/session.server';
+import { commitLoginSession, getLoginSession, getUser } from '~/utils/auth/session.server';
+import { toast, Toaster } from 'sonner';
+import { getFlashMessage } from '~/utils/flash/flashmessages.server';
+import { toastMessage } from '~/utils/hooks/toast';
+import { useEffect } from 'react';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const loader = async ({ request }: DataFunctionArgs) => {
     const user = await getUser(request);
-    return json({ user });
+    const { message, header } = await getFlashMessage(request);
+
+    return json({ user, message }, { headers: { 'Set-Cookie': header } });
 };
 
 export default function App() {
-    const { user } = useLoaderData<typeof loader>();
+    const { user, message } = useLoaderData<typeof loader>();
+    useEffect(() => {
+        if (message) {
+            console.log('Toasting');
+            toastMessage(message);
+        }
+    }, [message]);
     return (
         <html lang='en'>
             <head>
@@ -32,6 +44,7 @@ export default function App() {
             </head>
             <body className={'bg-neutral-900'}>
                 <AppLayout>
+                    <Toaster position={'top-right'} theme={'dark'} />
                     <Outlet />
                     <ScrollRestoration />
                     <Scripts />

@@ -23,13 +23,14 @@ model Application {
 }
 
 model Secret {
-  id            String      @id @default(uuid())
-  name          String
-  secret        String
-  hidden        Boolean     @default(false)
-  applicationId String
-  application   Application @relation(fields: [applicationId], references: [id])
-  createdAt     Float
+  id             String      @id @default(uuid())
+  name           String
+  secret         String
+  lastCharacters String
+  hidden         Boolean     @default(false)
+  applicationId  String
+  application    Application @relation(fields: [applicationId], references: [id])
+  createdAt      Float
 }
 
 model User {

@@ -1,5 +1,21 @@
 import { prisma } from '~/utils/prisma/prisma.server';
 import { tr } from 'date-fns/locale';
+import { InsufficientPermissionsException } from '~/exception/InsufficientPermissionsException';
+
+export async function requireApplicationOwnership(applicationId: string, userId: string) {
+    const application = await prisma.application.findUnique({
+        where: {
+            id_userId: {
+                userId,
+                id: applicationId,
+            },
+        },
+    });
+    if (!application) {
+        throw new InsufficientPermissionsException('Application ownership');
+    }
+    return application;
+}
 
 export async function findApplication(applicationId: string, requireUser = false, userId?: string) {
     if (requireUser) {

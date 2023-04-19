@@ -17,10 +17,5 @@ export function useOptionalUser(): User | undefined {
 }
 
 export function getRedactedString() {
-    const min = 10;
-    const max = 32;
-
-    const randomLength = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    return '*'.repeat(randomLength);
+    return '*'.repeat(16);
 }

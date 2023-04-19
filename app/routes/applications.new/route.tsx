@@ -67,7 +67,7 @@ const NewApplicationPage = () => {
     return (
         <section>
             <div className={'flex w-full flex-col items-center justify-center'}>
-                <Form method={'POST'} className={'grid w-full gap-2 md:w-1/2'}>
+                <Form method={'POST'} className={'grid w-full gap-2 '}>
                     <PageHeader divider={true}>New Application</PageHeader>
                     <ApplicationFormComponent />
                     <div className={'flex items-center gap-2 border-t border-t-white/30 py-2'}>

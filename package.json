@@ -25,7 +25,8 @@
     "prettier-plugin-tailwindcss": "^0.2.7",
     "prisma": "^4.12.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sonner": "^0.3.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.15.0",

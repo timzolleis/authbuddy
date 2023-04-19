@@ -4,7 +4,7 @@ import { SideNavComponent } from '~/ui/components/nav/SideNavComponent';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className={'h-screen w-full font-inter text-white'}>
+        <div className={'h-screen font-inter text-white'}>
             <NavBar></NavBar>
             <div
                 className={
@@ -12,8 +12,8 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
                 }>
                 <SideNavComponent />
             </div>
-            <section className={'flex items-start px-5 py-2 md:px-20'}>
-                <main className={'w-full'}>{children}</main>
+            <section className={'flex justify-center px-5 py-2 md:px-20'}>
+                <main className={'w-full lg:w-4/5 xl:w-2/3'}>{children}</main>
             </section>
         </div>
     );

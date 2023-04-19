@@ -122,70 +122,68 @@ const ApplicationPage = () => {
     }, [searchParams]);
 
     return (
-        <section className={'flex'}>
-            <div className={'flex w-full items-start justify-center gap-5'}>
-                <Form method={'POST'} className={'grid w-full gap-2 md:w-1/2'}>
-                    <span className={'flex flex-col items-start justify-start'}>
-                        <p className={'text-sm text-neutral-500'}> Application</p>
-                        <PageHeader>{application.name}</PageHeader>
-                        <Badge
-                            text={application.deactivated ? 'Not active' : 'Active'}
-                            color={application.deactivated ? 'red' : 'green'}></Badge>
-                    </span>
-                    <ApplicationFormComponent application={application} />
-                    <div className={'flex items-center gap-2 border-t border-t-white/30 py-2'}>
-                        <Button value={'update'} width={'normal'}>
-                            Save changes
-                        </Button>
-                        <Link to={'/applications'}>
-                            <Button color={'secondary'}>Cancel</Button>
-                        </Link>
-                    </div>
-                    <DangerZone>
-                        <DangerZoneAction
-                            name={'Delete your application'}
-                            description={
-                                'This will delete your application. This action cannot be reversed'
-                            }
-                            buttonName={'Delete'}
-                            onClick={() => setAction('delete')}></DangerZoneAction>
-
-                        {application.deactivated ? (
-                            <DangerZoneAction
-                                name={'Reactivate your application'}
-                                description={
-                                    'This will reactivate your application. Users will again be able to use services that rely on this application'
-                                }
-                                buttonName={'Reactivate'}
-                                onClick={() => setAction('reactivate')}></DangerZoneAction>
-                        ) : (
-                            <DangerZoneAction
-                                name={'Deactivate your application'}
-                                description={
-                                    'This will deactivate your application. Users will no longer be able to authenticate using services that rely on this application'
-                                }
-                                buttonName={'Deactivate'}
-                                onClick={() => setAction('deactivate')}></DangerZoneAction>
-                        )}
-                    </DangerZone>
-                </Form>
-                <Form method={'POST'}>
-                    <ConfirmDangerousActionModal
-                        onCancel={unsetAction}
-                        phraseToMatch={
-                            action
-                                ? `${application.name}/${getAction(action).phraseToMatch}`
-                                : 'dangerous-action'
+        <div className={'flex w-full items-start justify-center gap-5'}>
+            <Form method={'POST'} className={'grid w-full gap-2 '}>
+                <span className={'flex flex-col items-start justify-start'}>
+                    <p className={'text-sm text-neutral-500'}> Application</p>
+                    <PageHeader>{application.name}</PageHeader>
+                    <Badge
+                        text={application.deactivated ? 'Not active' : 'Active'}
+                        color={application.deactivated ? 'red' : 'green'}></Badge>
+                </span>
+                <ApplicationFormComponent application={application} />
+                <div className={'flex items-center gap-2 border-t border-t-white/30 py-2'}>
+                    <Button value={'update'} width={'normal'}>
+                        Save changes
+                    </Button>
+                    <Link to={'/applications'}>
+                        <Button color={'secondary'}>Cancel</Button>
+                    </Link>
+                </div>
+                <DangerZone>
+                    <DangerZoneAction
+                        name={'Delete your application'}
+                        description={
+                            'This will delete your application. This action cannot be reversed'
                         }
-                        actionName={getAction(action).actionName}
-                        showModal={showModal}
-                        toggleModal={unsetAction}
-                        doesSubmit={true}
-                        submissionValue={getAction(action).phraseToMatch}
-                    />
-                </Form>
-            </div>
-        </section>
+                        buttonName={'Delete'}
+                        onClick={() => setAction('delete')}></DangerZoneAction>
+
+                    {application.deactivated ? (
+                        <DangerZoneAction
+                            name={'Reactivate your application'}
+                            description={
+                                'This will reactivate your application. Users will again be able to use services that rely on this application'
+                            }
+                            buttonName={'Reactivate'}
+                            onClick={() => setAction('reactivate')}></DangerZoneAction>
+                    ) : (
+                        <DangerZoneAction
+                            name={'Deactivate your application'}
+                            description={
+                                'This will deactivate your application. Users will no longer be able to authenticate using services that rely on this application'
+                            }
+                            buttonName={'Deactivate'}
+                            onClick={() => setAction('deactivate')}></DangerZoneAction>
+                    )}
+                </DangerZone>
+            </Form>
+            <Form method={'POST'}>
+                <ConfirmDangerousActionModal
+                    onCancel={unsetAction}
+                    phraseToMatch={
+                        action
+                            ? `${application.name}/${getAction(action).phraseToMatch}`
+                            : 'dangerous-action'
+                    }
+                    actionName={getAction(action).actionName}
+                    showModal={showModal}
+                    toggleModal={unsetAction}
+                    doesSubmit={true}
+                    submissionValue={getAction(action).phraseToMatch}
+                />
+            </Form>
+        </div>
     );
 };
 

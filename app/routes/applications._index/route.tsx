@@ -9,6 +9,7 @@ import { Application } from '.prisma/client';
 import { DangerIcon } from '~/ui/icons/DangerIcon';
 import applications from '~/routes/applications';
 import { Badge } from '~/ui/components/common/Badge';
+import { NoItemsComponent } from '~/ui/components/error/NoItemsComponent';
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
     const user = await requireDeveloper(request);
@@ -27,30 +28,37 @@ const ApplicationPage = () => {
     const { applications } = useLoaderData<typeof loader>();
     return (
         <main>
-            <div className={'flex items-center justify-between'}>
-                <PageHeader>My Applications</PageHeader>
-                <Link to={'/applications/new'}>
-                    <Button>New Application</Button>
-                </Link>
-            </div>
-            <Suspense fallback={<p>Loading applications...</p>}>
-                <Await resolve={applications}>
-                    {(resolvedApplications) =>
-                        resolvedApplications.length > 0 ? (
-                            <Applications applications={resolvedApplications} />
-                        ) : (
-                            <NoApplicationsComponent />
-                        )
-                    }
-                </Await>
-            </Suspense>
+            <section className={'grid w-full gap-2'}>
+                <div className={'flex items-center justify-between'}>
+                    <PageHeader>My Applications</PageHeader>
+                    <Link to={'/applications/new'}>
+                        <Button>New Application</Button>
+                    </Link>
+                </div>
+                <Suspense fallback={<p>Loading applications...</p>}>
+                    <Await resolve={applications}>
+                        {(resolvedApplications) =>
+                            resolvedApplications.length > 0 ? (
+                                <Applications applications={resolvedApplications} />
+                            ) : (
+                                <NoItemsComponent
+                                    headline={'No applications'}
+                                    description={
+                                        'Create an application to get startet with AuthBuddy.'
+                                    }
+                                />
+                            )
+                        }
+                    </Await>
+                </Suspense>
+            </section>
         </main>
     );
 };
 
 const Applications = ({ applications }: { applications: Application[] }) => {
     return (
-        <div className={'mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-6'}>
+        <div className={'mt-5 grid gap-2 md:grid-cols-2 xl:grid-cols-3'}>
             {applications.map((application) => (
                 <ApplicationComponent
                     key={application.id}

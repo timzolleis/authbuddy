@@ -2,17 +2,22 @@ import { Form, Link, Outlet, useLoaderData } from '@remix-run/react';
 import { Button } from '~/ui/components/button/Button';
 import { DataFunctionArgs, json } from '@remix-run/node';
 import { requireParam } from '~/utils/params/params.server';
-import { findApplication, requireUserApplication } from '~/utils/prisma/models/application.server';
+import {
+    requireApplicationOwnership,
+    requireUserApplication,
+} from '~/utils/prisma/models/application.server';
 import { requireDeveloper } from '~/utils/auth/session.server';
 import { DangerIcon } from '~/ui/icons/DangerIcon';
 import { useState } from 'react';
 import { EyeIcon } from '~/ui/icons/EyeIcon';
 import { getRedactedString } from '~/utils/hooks/user';
-import { prisma } from '~/utils/prisma/prisma.server';
-import { hashSecret } from '~/utils/encryption/secret.server';
 import { Secret } from '.prisma/client';
 import { DateTime } from 'luxon';
 import { CopyIcon } from '~/ui/icons/CopyIcon';
+import { requireFormDataField } from '~/utils/form/formdata.server';
+import { hideSecret, revokeSecret } from '~/utils/prisma/models/secret.server';
+import { flashMessage } from '~/utils/flash/flashmessages.server';
+import { NoItemsComponent } from '~/ui/components/error/NoItemsComponent';
 
 export const loader = async ({ params, request }: DataFunctionArgs) => {
     const applicationId = requireParam('applicationId', params);
@@ -24,36 +29,37 @@ export const loader = async ({ params, request }: DataFunctionArgs) => {
 export const action = async ({ request, params }: DataFunctionArgs) => {
     const applicationId = requireParam('applicationId', params);
     const user = await requireDeveloper(request);
+    await requireApplicationOwnership(applicationId, user.id);
     const formData = await request.formData();
     const intent = formData.get('intent')?.toString();
-    const secretId = formData.get('secretId')?.toString();
-    const application = await findApplication(applicationId, true, user.id);
-    if (!secretId) {
-        throw new Error('Missing secret ID');
+    const secretId = requireFormDataField(formData, 'secretId', 'Secret ID missing');
+    if (intent === 'revoke') {
+        await revokeSecret(secretId);
+        return json(
+            {},
+            {
+                headers: {
+                    'Set-Cookie': await flashMessage(request, {
+                        message: 'Secret revoked successfully',
+                        type: 'success',
+                    }),
+                },
+            }
+        );
     }
-    const secret = await prisma.secret.findUnique({
-        where: {
-            id: secretId,
-        },
-    });
-    if (intent === 'revoke' && secret) {
-        await prisma.secret.delete({
-            where: {
-                id: secretId,
-            },
-        });
-        return json({ message: 'Secret revoked' });
-    }
-    if (intent === 'hide' && secret) {
-        await prisma.secret.update({
-            where: {
-                id: secretId,
-            },
-            data: {
-                secret: await hashSecret(secret.secret),
-                hidden: true,
-            },
-        });
+    if (intent === 'hide') {
+        await hideSecret(secretId);
+        return json(
+            {},
+            {
+                headers: {
+                    'Set-Cookie': await flashMessage(request, {
+                        message: 'Secret hidden successfully',
+                        type: 'success',
+                    }),
+                },
+            }
+        );
     }
     return null;
 };
@@ -65,7 +71,7 @@ const ApplicationSecretsPage = () => {
         <section className={'flex'}>
             <Outlet></Outlet>
             <div className={'flex w-full items-start justify-center gap-5'}>
-                <Form method={'POST'} className={'grid w-full gap-2 md:w-1/2'}>
+                <div className={'grid w-full gap-2'}>
                     <span
                         className={
                             'flex items-center justify-between border-b border-white/30 pb-2'
@@ -85,9 +91,12 @@ const ApplicationSecretsPage = () => {
                             <SecretComponent key={secret.id} secret={secret} />
                         ))
                     ) : (
-                        <NoClientSecrets />
+                        <NoItemsComponent
+                            headline={'No client secrets'}
+                            description={'Add a new client secret to use your application.'}
+                        />
                     )}
-                </Form>
+                </div>
             </div>
         </section>
     );
@@ -117,11 +126,16 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
                 </span>
                 <p className={'text-sm text-neutral-400'}>
                     {secret.hidden
-                        ? 'This secret is already hidden and cannot be revealed again'
+                        ? `${getRedactedString()}${secret.lastCharacters}`
                         : showSecret
                         ? secret.secret
                         : getRedactedString()}
                 </p>
+                {secret.hidden ? (
+                    <p className={'text-xs text-neutral-400'}>
+                        The major part of this secret has been hashed and cannot be revealed again.
+                    </p>
+                ) : null}
                 <span className={'flex items-center gap-1 text-sm text-neutral-400'}>
                     <p>Created:</p>
                     <p>

@@ -5,21 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add application secret functionality">
-      <change afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/CreatSecretComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/icons/CopyIcon.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/icons/EyeIcon.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/encryption/secret.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/params/params.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/exception/EntityNotFoundException.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/exception/InsufficientPermissionsException.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/ui/components/error/NoItemsComponent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/flash/flashmessages.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/flash/session.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/form/formdata.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/hooks/toast.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/prisma/models/secret.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/illustrations/search-illustration.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId._index/applicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/applicationActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/modal/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/modal/Modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/Icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/icons/Icon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/session.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/hooks/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/hooks/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
@@ -38,8 +41,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -69,7 +72,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "add-application-secrets",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/tim/IdeaProjects/authbuddy",
+    "last_opened_file_path": "C:/Users/tim/IdeaProjects/authbuddy/public/resources/illustrations",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,10 +90,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources\illustrations" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources\img\logos\auth-providers" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\routes\login._index" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources\illustrations" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\ui" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources\img\logos\auth-providers" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources" />
@@ -129,7 +134,9 @@
       <workItem from="1681484129109" duration="1332000" />
       <workItem from="1681485890935" duration="4993000" />
       <workItem from="1681574864271" duration="1543000" />
-      <workItem from="1681845885655" duration="6878000" />
+      <workItem from="1681845885655" duration="7402000" />
+      <workItem from="1681897420209" duration="50000" />
+      <workItem from="1681897909288" duration="4997000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -166,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681421757581</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add application secret functionality">
+      <created>1681852843687</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681852843687</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
