@@ -3,6 +3,7 @@ import { Button } from '~/ui/components/button/Button';
 import { DataFunctionArgs, json } from '@remix-run/node';
 import { requireParam } from '~/utils/params/params.server';
 import {
+    findApplication,
     requireApplicationOwnership,
     requireUserApplication,
 } from '~/utils/prisma/models/application.server';
@@ -17,12 +18,16 @@ import { CopyIcon } from '~/ui/icons/CopyIcon';
 import { requireFormDataField } from '~/utils/form/formdata.server';
 import { hideSecret, revokeSecret } from '~/utils/prisma/models/secret.server';
 import { flashMessage } from '~/utils/flash/flashmessages.server';
-import { NoItemsComponent } from '~/ui/components/error/NoItemsComponent';
+import { ErrorComponent } from '~/ui/components/error/ErrorComponent';
+import { EntityNotFoundException } from '~/exception/EntityNotFoundException';
 
 export const loader = async ({ params, request }: DataFunctionArgs) => {
     const applicationId = requireParam('applicationId', params);
     const user = await requireDeveloper(request);
-    const application = await requireUserApplication(applicationId, user.id, true);
+    const application = await findApplication(applicationId, user.id);
+    if (!application) {
+        throw new EntityNotFoundException('application');
+    }
     return json({ application });
 };
 
@@ -91,7 +96,7 @@ const ApplicationSecretsPage = () => {
                             <SecretComponent key={secret.id} secret={secret} />
                         ))
                     ) : (
-                        <NoItemsComponent
+                        <ErrorComponent
                             headline={'No client secrets'}
                             description={'Add a new client secret to use your application.'}
                         />

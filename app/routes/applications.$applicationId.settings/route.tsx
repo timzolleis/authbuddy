@@ -1,6 +1,6 @@
 import { DataFunctionArgs, json, redirect } from '@remix-run/node';
 import { prisma } from '~/utils/prisma/prisma.server';
-import { Form, Link, useLoaderData, useSearchParams } from '@remix-run/react';
+import { Form, Link, useLoaderData, useRouteError, useSearchParams } from '@remix-run/react';
 import { PageHeader } from '~/ui/components/page/PageHeader';
 import { Button } from '~/ui/components/button/Button';
 import {
@@ -17,12 +17,14 @@ import { Badge } from '~/ui/components/common/Badge';
 import {
     changeApplicationStatus,
     deleteApplication,
+    findApplication,
 } from '~/utils/prisma/models/application.server';
 import {
     Action,
     getAction,
     isAction,
 } from '~/routes/applications.$applicationId.settings/applicationActions';
+import { EntityNotFoundException } from '~/exception/EntityNotFoundException';
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
     const user = await requireDeveloper(request);
@@ -30,17 +32,9 @@ export const loader = async ({ request, params }: DataFunctionArgs) => {
     if (!applicationId) {
         throw redirect('/applications');
     }
-    const application = await prisma.application.findUnique({
-        where: {
-            id_userId: {
-                id: applicationId,
-                userId: user.id,
-            },
-        },
-    });
-
+    const application = await findApplication(applicationId, user.id);
     if (!application) {
-        throw new Error('Application not found');
+        throw new EntityNotFoundException('Application');
     }
     return json({ application });
 };

@@ -17,11 +17,12 @@ export async function requireApplicationOwnership(applicationId: string, userId:
     return application;
 }
 
-export async function findApplication(applicationId: string, requireUser = false, userId?: string) {
-    if (requireUser) {
-        if (!userId) {
-            throw new Error('User ID is required');
-        }
+export async function findApplication(
+    applicationId: string,
+    userId?: string,
+    includeSecrets?: boolean
+) {
+    if (userId) {
         return prisma.application.findUnique({
             where: {
                 id_userId: {
@@ -29,11 +30,17 @@ export async function findApplication(applicationId: string, requireUser = false
                     id: applicationId,
                 },
             },
+            include: {
+                secrets: includeSecrets,
+            },
         });
     }
     return prisma.application.findUnique({
         where: {
             id: applicationId,
+        },
+        include: {
+            secrets: includeSecrets,
         },
     });
 }

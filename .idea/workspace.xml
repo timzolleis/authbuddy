@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add toast messages&#10;finalize secret creation">
-      <change afterPath="$PROJECT_DIR$/app/routes/test1.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/content/error-translations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/exception/EntityNotFoundException.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/exception/FormFieldMissingException.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/exception/EntityNotFoundException.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/error/NoItemsComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/error/ErrorComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "add-application-secrets",
+    "git-widget-placeholder": "improve-error-handling",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/tim/IdeaProjects/authbuddy/public/resources/illustrations",
     "list.type.of.created.stylesheet": "CSS",

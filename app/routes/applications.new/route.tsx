@@ -1,6 +1,6 @@
 import { DataFunctionArgs, json, redirect } from '@remix-run/node';
 import * as crypto from 'crypto';
-import { Form, Link, useLoaderData } from '@remix-run/react';
+import { Form, Link, useActionData, useLoaderData } from '@remix-run/react';
 import { mapIncludes } from 'yaml/dist/compose/util-map-includes';
 import { PageHeader } from '~/ui/components/page/PageHeader';
 import { FormTextArea, FormTextInput } from '~/ui/components/form/FormTextInput';
@@ -10,24 +10,17 @@ import { requireDeveloper } from '~/utils/auth/session.server';
 import Applications from '~/routes/applications';
 import { Application } from '.prisma/client';
 import applications from '~/routes/applications';
+import { ErrorComponent } from '~/ui/components/error/ErrorComponent';
+import { requireFormDataField } from '~/utils/form/formdata.server';
 
 const errorMessage = (field: string) => `The field ${field} is required`;
 
 export function validateApplicationFormData(formData: FormData) {
     const errors = new Map<string, string>();
-    const applicationName = formData.get('applicationName')?.toString();
-    if (!applicationName) {
-        errors.set('applicationName', errorMessage('Application name'));
-    }
-    const applicationUrl = formData.get('applicationUrl')?.toString();
-    if (!applicationUrl) {
-        errors.set('applicationUrl', errorMessage('Application Url'));
-    }
+    const applicationName = requireFormDataField(formData, 'applicationName');
+    const applicationUrl = requireFormDataField(formData, 'applicationUrl');
     const applicationDescription = formData.get('applicationDescription')?.toString();
-    const applicationCallbackUrl = formData.get('applicationCallbackUrl')?.toString();
-    if (!applicationCallbackUrl) {
-        errors.set('applicationCallbackUrl', errorMessage('Application callback url'));
-    }
+    const applicationCallbackUrl = requireFormDataField(formData, 'applicationCallbackUrl');
     return {
         applicationName,
         applicationDescription,
@@ -39,28 +32,30 @@ export function validateApplicationFormData(formData: FormData) {
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
     const applicationSecret = crypto.randomBytes(32).toString('hex');
-
     return json({ applicationSecret });
 };
 
 export const action = async ({ request, params }: DataFunctionArgs) => {
-    const user = await requireDeveloper(request);
-    const formData = await request.formData();
-    const validatedData = validateApplicationFormData(formData);
-    if (validatedData.errors.size >= 1) {
-        return json({ errors: validatedData.errors });
+    try {
+        const user = await requireDeveloper(request);
+        const formData = await request.formData();
+        const validatedData = validateApplicationFormData(formData);
+        await prisma.application.create({
+            data: {
+                userId: user.id,
+                name: validatedData.applicationName,
+                description: validatedData.applicationDescription,
+                homepage: validatedData.applicationUrl,
+                redirectUrl: validatedData.applicationCallbackUrl,
+            },
+        });
+        return redirect('/applications');
+    } catch (e) {
+        if (e instanceof Error) {
+            throw json({ error: e.message });
+        }
+        throw json({ error: 'Unknown error' });
     }
-    //We have to override the type system here since through assuring that we have no errors, we are sure that all values do exist.
-    await prisma.application.create({
-        data: {
-            userId: user.id,
-            name: validatedData.applicationName!,
-            description: validatedData.applicationDescription,
-            homepage: validatedData.applicationUrl!,
-            redirectUrl: validatedData.applicationCallbackUrl!,
-        },
-    });
-    return redirect('/applications');
 };
 
 const NewApplicationPage = () => {
@@ -122,6 +117,17 @@ export const ApplicationFormComponent = ({ application }: { application?: Applic
                 descriptionText={'Your application’s callback url'}
             />
         </div>
+    );
+};
+
+export const ErrorBoundary = () => {
+    return (
+        <ErrorComponent
+            headline={'Error when creating your application'}
+            description={'There was an error creating your application. Please try again later'}
+            actionText={'Go back to applications'}
+            actionLink={'/applications'}
+        />
     );
 };
 

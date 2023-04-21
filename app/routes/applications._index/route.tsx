@@ -9,7 +9,7 @@ import { Application } from '.prisma/client';
 import { DangerIcon } from '~/ui/icons/DangerIcon';
 import applications from '~/routes/applications';
 import { Badge } from '~/ui/components/common/Badge';
-import { NoItemsComponent } from '~/ui/components/error/NoItemsComponent';
+import { ErrorComponent } from '~/ui/components/error/ErrorComponent';
 
 export const loader = async ({ request, params }: DataFunctionArgs) => {
     const user = await requireDeveloper(request);
@@ -41,7 +41,7 @@ const ApplicationPage = () => {
                             resolvedApplications.length > 0 ? (
                                 <Applications applications={resolvedApplications} />
                             ) : (
-                                <NoItemsComponent
+                                <ErrorComponent
                                     headline={'No applications'}
                                     description={
                                         'Create an application to get startet with AuthBuddy.'
