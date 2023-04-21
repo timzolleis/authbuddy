@@ -83,8 +83,8 @@ const ApplicationSecretsPage = () => {
                     </span>
                     <p className={'text-sm text-neutral-400'}>
                         It is highly recommended to hide secrets after you've copied them into your
-                        environment variables, since they will be hashed in the database too and can
-                        not be read again.
+                        environment variables, since they will be hashed in the database and can not
+                        be read again.
                     </p>
                     {application.secrets.length > 0 ? (
                         application.secrets.map((secret) => (

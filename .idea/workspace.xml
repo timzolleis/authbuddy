@@ -4,30 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add application secret functionality">
-      <change afterPath="$PROJECT_DIR$/app/exception/EntityNotFoundException.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/exception/InsufficientPermissionsException.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/components/error/NoItemsComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/flash/flashmessages.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/flash/session.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/form/formdata.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/hooks/toast.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/prisma/models/secret.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/illustrations/search-illustration.svg" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add toast messages&#10;finalize secret creation">
+      <change afterPath="$PROJECT_DIR$/app/routes/test1.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/session.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/hooks/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/hooks/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +117,7 @@
       <workItem from="1681574864271" duration="1543000" />
       <workItem from="1681845885655" duration="7402000" />
       <workItem from="1681897420209" duration="50000" />
-      <workItem from="1681897909288" duration="4997000" />
+      <workItem from="1681897909288" duration="5861000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -180,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681852843687</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add toast messages&#10;finalize secret creation">
+      <created>1681903796040</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681903796040</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +192,8 @@
     <MESSAGE value="use url object" />
     <MESSAGE value="finish github login" />
     <MESSAGE value="add application secret functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add application secret functionality" />
+    <MESSAGE value="add toast messages&#10;finalize secret creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="add toast messages&#10;finalize secret creation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
