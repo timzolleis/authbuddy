@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="improve error catching when creating and viewing applications">
-      <change afterPath="$PROJECT_DIR$/app/exception/ApplicationConfigException.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/valorant-api/ValorantApiClient.ts" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add axios logic">
+      <change afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/ui/icons/ClosedEyeIcon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/auth/riot/cookies.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -120,7 +125,11 @@
       <workItem from="1681845885655" duration="7402000" />
       <workItem from="1681897420209" duration="50000" />
       <workItem from="1681897909288" duration="5861000" />
-      <workItem from="1682187743208" duration="2343000" />
+      <workItem from="1682187743208" duration="2713000" />
+      <workItem from="1682195357014" duration="3000" />
+      <workItem from="1682352870158" duration="1983000" />
+      <workItem from="1682435952583" duration="2059000" />
+      <workItem from="1682438025724" duration="6446000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -178,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682084450329</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add axios logic">
+      <created>1682190672936</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682190672936</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +220,8 @@
     <MESSAGE value="add application secret functionality" />
     <MESSAGE value="add toast messages&#10;finalize secret creation" />
     <MESSAGE value="improve error catching when creating and viewing applications" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve error catching when creating and viewing applications" />
+    <MESSAGE value="add axios logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add axios logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

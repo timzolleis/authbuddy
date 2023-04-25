@@ -1,6 +1,4 @@
-import { Form, NavLink, Outlet } from '@remix-run/react';
-import { Tab, TabList, TextInput } from '@tremor/react';
-import { Button } from '~/ui/components/button/Button';
+import { Outlet } from '@remix-run/react';
 
 const LoginPage = () => {
     return (
@@ -13,7 +11,7 @@ const LoginPage = () => {
             </div>
             <div
                 className={
-                    'mt-5 rounded-lg border border-white/30 bg-neutral-800 p-5 md:w-1/3 md:p-10'
+                    'mt-5 w-full rounded-lg border border-white/30 bg-neutral-800 p-5 md:p-10 lg:w-1/2'
                 }>
                 <Outlet />
             </div>

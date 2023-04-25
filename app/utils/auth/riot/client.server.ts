@@ -4,22 +4,31 @@ import * as https from 'https';
 import axios, { AxiosHeaders } from 'axios';
 
 type Ciphers = string[] | undefined;
-type RiotConfig =
-    | {
-          clientPlatform: {
-              platformType: string;
-              platformOS: string;
-              platformOSVersion: string;
-              platformChipset: string;
-          };
-          riotClientVersion: string;
-          ciphers: Ciphers;
-          riotClientBuild: string;
-      }
-    | undefined;
+type RiotConfig = {
+    clientPlatform: {
+        platformType: string;
+        platformOS: string;
+        platformOSVersion: string;
+        platformChipset: string;
+    };
+    riotClientVersion: string;
+    ciphers: Ciphers;
+    riotClientBuild: string;
+};
 
-export async function getLoginClient() {
+async function getConfig() {
+    const config = await get<RiotConfig>('riotConfig');
+    if (!config) {
+        throw new ApplicationConfigException(
+            'There was an error reading riot config from edge config'
+        );
+    }
+    return config;
+}
+
+export async function getLoginClient(baseUrl?: string) {
     return axios.create({
+        baseURL: baseUrl,
         httpAgent: await getAgent(),
         httpsAgent: await getAgent(),
         headers: { ...(await getHeaders()) },
@@ -27,24 +36,16 @@ export async function getLoginClient() {
 }
 
 async function getAgent() {
-    const ciphers = (await get('riotConfig.ciphers')) as Ciphers;
-    if (!ciphers) {
-        throw new ApplicationConfigException('There was an error reading ciphers from edge config');
-    }
+    const config = await getConfig();
     return new https.Agent({
-        ciphers: ciphers.join(':'),
+        ciphers: config?.ciphers?.join(':'),
         honorCipherOrder: true,
         minVersion: 'TLSv1.2',
     });
 }
 
 async function getHeaders() {
-    const config = (await get('riotConfig')) as RiotConfig;
-    if (!config) {
-        throw new ApplicationConfigException(
-            'There was an error reading riot config from edge config'
-        );
-    }
+    const config = await getConfig();
     return {
         'content-type': 'application/json',
         'user-agent': `RiotClient/${config.riotClientBuild} rso-auth (Windows;10;;Professional, x64)`,

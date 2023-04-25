@@ -2,6 +2,18 @@ import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import type { ReactNode } from 'react';
 import { ExternalLinkIcon } from '~/ui/icons/ExternalLinkIcon';
+import { b } from 'vite-node/types-63205a44';
+import {
+    BeatLoader,
+    BounceLoader,
+    ClipLoader,
+    GridLoader,
+    HashLoader,
+    PropagateLoader,
+    PuffLoader,
+    PulseLoader,
+    SquareLoader,
+} from 'react-spinners';
 
 const button = cva('rounded', {
     variants: {
@@ -43,6 +55,7 @@ interface ButtonProps extends VariantProps<typeof button> {
     type?: 'submit' | 'button';
     onClick?: () => any;
     value?: string;
+    loading?: boolean;
 }
 
 export const Button = ({
@@ -56,6 +69,7 @@ export const Button = ({
     type = 'submit',
     onClick,
     value,
+    loading,
 }: ButtonProps) => {
     return (
         <button
@@ -65,14 +79,13 @@ export const Button = ({
             type={type}
             className={button({ color, width, padding, font })}
             onClick={() => (onClick ? onClick() : void 0)}>
-            {external ? (
-                <span className={'flex items-center gap-2'}>
-                    {children}
-                    <ExternalLinkIcon />
-                </span>
-            ) : (
-                children
-            )}
+            <span className={'flex items-center justify-center gap-2'}>
+                {external ? <ExternalLinkIcon /> : null}
+                {loading ? (
+                    <ClipLoader size={20} color={'white'} loading={loading}></ClipLoader>
+                ) : null}
+                {children}
+            </span>
         </button>
     );
 };
