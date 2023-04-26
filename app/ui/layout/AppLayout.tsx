@@ -4,12 +4,9 @@ import { SideNavComponent } from '~/ui/components/nav/SideNavComponent';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className={'h-screen font-inter text-white'}>
+        <div className={'font-inter text-white'}>
             <NavBar></NavBar>
-            <div
-                className={
-                    'mt-5 border-b border-b-white/30 py-1 md:absolute md:border-none md:py-2 md:pl-20'
-                }>
+            <div className={'mt-5 py-1 md:absolute md:py-2 md:pl-20'}>
                 <SideNavComponent />
             </div>
             <section className={'flex justify-center px-5 py-2 md:px-20'}>

@@ -1,5 +1,5 @@
-import { Form, Link, NavLink, Outlet, V2_MetaFunction } from '@remix-run/react';
-import { Tab, TabList, TextInput } from '@tremor/react';
+import { Form, Link, NavLink, Outlet, useNavigation, V2_MetaFunction } from '@remix-run/react';
+import { Tab, TabList } from '@tremor/react';
 import { Button } from '~/ui/components/button/Button';
 import {
     AccessTokenResponse,
@@ -12,6 +12,9 @@ import { requireFormDataField } from '~/utils/form/formdata.server';
 import { useState } from 'react';
 import { EyeIcon } from '~/ui/icons/EyeIcon';
 import { ClosedEyeIcon } from '~/ui/icons/ClosedEyeIcon';
+import { PasswordInput, TextInput } from '~/ui/components/form/TextInput';
+import { Simulate } from 'react-dom/test-utils';
+import load = Simulate.load;
 
 export const meta: V2_MetaFunction = () => {
     return [{ title: 'AuthBuddy | Login' }];
@@ -42,30 +45,22 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
 };
 
 const LoginPage = () => {
-    const [showPassword, setShowPassword] = useState(false);
+    const loading = useNavigation().state !== 'idle';
     return (
         <Form method={'POST'} className={'mt-2 space-y-3'}>
-            <p className={'text-title-medium font-bold'}>Sign in to your account</p>
+            <p className={'text-center text-headline-medium font-bold'}>Sign in to AuthBuddy</p>
             <TextInput
                 required={true}
                 name={'username'}
                 placeholder={'Username...'}
-                className={'border-white/30 bg-neutral-900 hover:bg-neutral-800'}
+                className={'border border-white/30 bg-neutral-900 text-white hover:bg-neutral-800'}
             />
-            <span className={'flex items-center gap-2'}>
-                <TextInput
-                    type={showPassword ? 'text' : 'password'}
-                    required={true}
-                    name={'password'}
-                    placeholder={'Password...'}
-                    className={'border-white/30 bg-neutral-900 hover:bg-neutral-800'}
-                />
-                {showPassword ? (
-                    <EyeIcon onClick={() => setShowPassword(!showPassword)} />
-                ) : (
-                    <ClosedEyeIcon onClick={() => setShowPassword(!showPassword)} />
-                )}
-            </span>
+            <PasswordInput
+                required={true}
+                name={'password'}
+                placeholder={'Password...'}
+                className={'border border-white/30 bg-neutral-900 text-white hover:bg-neutral-800'}
+            />
             <span className={'flex items-center gap-2'}>
                 <input
                     name={'remember_me'}
@@ -77,11 +72,11 @@ const LoginPage = () => {
                 <p>Remember me</p>
             </span>
             <div className={'grid gap-2'}>
-                <Button padding={'medium'} width={'full'} font={'medium'}>
-                    Sign in
+                <Button loading={loading} width={'full'} font={'medium'}>
+                    {loading ? 'Signing you in...' : 'Sign in'}
                 </Button>
                 <Link to={'/login/developer'}>
-                    <Button color={'secondary'} padding={'medium'} width={'full'} font={'medium'}>
+                    <Button color={'secondary'} width={'full'} font={'medium'}>
                         Sign up as developer
                     </Button>
                 </Link>

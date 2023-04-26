@@ -16,7 +16,7 @@ const DeveloperLoginPage = () => {
     ) as AvailableProvider[];
     return (
         <Form className={'mt-2 space-y-3'}>
-            <p className={'text-title-medium font-bold'}>Sign in to your developer account</p>
+            <p className={'text-center text-headline-medium font-bold'}>Sign in to AuthBuddy Dev</p>
             <div className={'flex flex-col gap-2'}>
                 {availableProviders.map((provider) => (
                     <OauthComponent
@@ -33,15 +33,13 @@ const OauthComponent = ({ provider }: { provider: OauthProvider }) => {
         <Link to={`/internal/auth/${provider.name.toLowerCase()}`}>
             <div
                 className={
-                    'flex items-center gap-5 rounded border border-white/30 bg-neutral-900 px-5 py-3'
+                    'flex items-center justify-center gap-3 rounded-md border border-white/30 bg-neutral-900 px-5 py-4 md:py-3'
                 }>
-                <div className={'flex-[0_0_5%]'}>
-                    <img
-                        className={'w-5'}
-                        src={`/resources/img/logos/auth-providers/${provider.name.toLowerCase()}.png`}
-                        alt=''
-                    />
-                </div>
+                <img
+                    className={'w-5'}
+                    src={`/resources/img/logos/auth-providers/${provider.name.toLowerCase()}.png`}
+                    alt=''
+                />
                 <div>
                     Sign in with <span className={'font-semibold'}>{provider.name}</span>
                 </div>

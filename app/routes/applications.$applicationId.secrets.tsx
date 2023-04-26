@@ -71,7 +71,6 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
 
 const ApplicationSecretsPage = () => {
     const { application } = useLoaderData<typeof loader>();
-
     return (
         <section className={'flex'}>
             <Outlet></Outlet>
@@ -107,6 +106,7 @@ const ApplicationSecretsPage = () => {
     );
 };
 
+//TODO: Fix mobile styling of revealed secrets
 const SecretComponent = ({ secret }: { secret: Secret }) => {
     const [showSecret, setShowSecret] = useState(false);
     const copySecret = () => {
@@ -117,8 +117,8 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
 
     return (
         <div className={'flex items-center justify-between rounded-md border border-white/30 p-4'}>
-            <span>
-                <span className={'flex items-center gap-2'}>
+            <div className={'min-w-0'}>
+                <span className={'flex min-w-0 items-center gap-2'}>
                     <p>{secret.name}</p>
                     {secret.hidden ? null : (
                         <span className={'flex items-center gap-2'}>
@@ -129,7 +129,7 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
                         </span>
                     )}
                 </span>
-                <p className={'text-sm text-neutral-400'}>
+                <p className={'truncate text-sm text-neutral-400'}>
                     {secret.hidden
                         ? `${getRedactedString()}${secret.lastCharacters}`
                         : showSecret
@@ -149,10 +149,10 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
                         )}
                     </p>
                 </span>
-            </span>
+            </div>
 
-            <Form method={'POST'}>
-                <span className={'space-x-2'}>
+            <Form method={'POST'} className={'min-w-max'}>
+                <span className={'flex flex-col gap-2 space-x-2'}>
                     <input type='hidden' name={'secretId'} defaultValue={secret.id} />
                     {secret.hidden ? null : (
                         <Button value={'hide'} color={'secondary'} padding={'medium'}>

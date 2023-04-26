@@ -89,25 +89,4 @@ const ApplicationComponent = ({ application }: { application: Application }) => 
     );
 };
 
-const NoApplicationsComponent = () => {
-    return (
-        <main className={'mt-5'}>
-            <section className={'lg: w-1/2 rounded border border-white/30 p-5 lg:p-10'}>
-                <span className={'flex items-center gap-2'}>
-                    <DangerIcon size={'sm'} />
-                    <h1 className={'text-headline-medium font-bold'}>No active applications</h1>
-                </span>
-                <p className={'text-sm text-neutral-300'}>
-                    It looks like you dont have any active applications. To create one, click here:
-                </p>
-                <div className={'mt-3 flex w-full items-center gap-2'}>
-                    <Link to={'/applications/new'}>
-                        <Button>Create new Application</Button>
-                    </Link>
-                </div>
-            </section>
-        </main>
-    );
-};
-
 export default ApplicationPage;

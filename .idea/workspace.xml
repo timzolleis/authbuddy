@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add axios logic">
-      <change afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/icons/ClosedEyeIcon.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/auth/riot/cookies.server.ts" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add login logic">
+      <change afterPath="$PROJECT_DIR$/app/ui/components/form/TextInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/login._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/button/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -129,7 +131,8 @@
       <workItem from="1682195357014" duration="3000" />
       <workItem from="1682352870158" duration="1983000" />
       <workItem from="1682435952583" duration="2059000" />
-      <workItem from="1682438025724" duration="6446000" />
+      <workItem from="1682438025724" duration="7164000" />
+      <workItem from="1682527039111" duration="4169000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -194,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682190672936</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add login logic">
+      <created>1682444644010</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682444644010</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +231,8 @@
     <MESSAGE value="add toast messages&#10;finalize secret creation" />
     <MESSAGE value="improve error catching when creating and viewing applications" />
     <MESSAGE value="add axios logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add axios logic" />
+    <MESSAGE value="add login logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add login logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

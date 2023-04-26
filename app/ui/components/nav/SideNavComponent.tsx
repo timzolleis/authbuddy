@@ -13,7 +13,7 @@ export const SideNavComponent = () => {
             {filteredMatches.map((match) => (
                 <div
                     key={match.id}
-                    className={'flex items-center divide-y divide-white/30 md:grid'}>
+                    className={'flex items-center gap-2 divide-white/30 px-5 md:grid md:divide-y'}>
                     {match.handle?.nav.links.map((link: { href: string; name: string }) => (
                         <NavLink
                             className={'min-w-max'}
