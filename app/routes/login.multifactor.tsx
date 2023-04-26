@@ -10,7 +10,8 @@ import { Button } from '~/ui/components/button/Button';
 import { decryptString } from '~/utils/encryption/encryption';
 import { requestAccessTokenWithMultifactorCode } from '~/utils/auth/riot/auth.server';
 import { da } from 'date-fns/locale';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { inner } from '@floating-ui/react';
 
 export const meta: V2_MetaFunction = () => {
     return [{ title: 'AuthBuddy | Multifactor' }];
@@ -71,45 +72,102 @@ const MultifactorLoginPage = () => {
     );
 };
 
-//TODO: Enable pasting and fix multi-digit input
 const MultifactorCodeInput = ({ length }: { length: number }) => {
-    const [text, setText] = useState();
-    const codeLengthArray: number[] = [];
-    //Little trick to be able to create n instances of the input
-    for (let i = 0; i < length; i++) {
-        codeLengthArray.push(i);
-    }
+    const [text, setText] = useState(Array(length).fill(''));
+    const refs = Array(length)
+        .fill('')
+        .map(() => useRef<HTMLInputElement>());
+
+    const focusInput = (index: number, change: number) => {
+        const ref = refs[index + change];
+        if (ref?.current) {
+            ref.current?.focus();
+        }
+    };
+
+    const handleTextInput = (index: number, value: string) => {
+        if (value.length > 1) {
+            value = value.split('')[0];
+        }
+        const code = [...text];
+        code[index] = value;
+        setText(code);
+        focusInput(index, 1);
+    };
+
+    const handleTextPaste = (index: number, value: string) => {
+        const code = [...text];
+        value.split('').forEach((value, valueIndex, array) => {
+            code[index + valueIndex] = value;
+        });
+        setText(code);
+        focusInput(index, value.length);
+    };
+
+    const handleDelete = (index: number) => {
+        const code = [...text];
+        code[index] = '';
+        setText(code);
+        focusInput(index, -1);
+    };
+
+    const onInput = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const number = parseInt(event.target.value);
+        const nativeEvent = event.nativeEvent as InputEvent;
+
+        if (nativeEvent.inputType === 'insertText') {
+            if (isNaN(number)) return;
+            handleTextInput(index, event.target.value);
+        }
+        if (nativeEvent.inputType === 'insertFromPaste') {
+            if (!isNaN(number)) return;
+            handleTextPaste(index, event.target.value);
+        }
+    };
+
     return (
         <div className={'mt-5 flex justify-center gap-3'}>
-            {codeLengthArray.map((i) => (
-                <CodeInput key={i} index={i} />
+            {text.map((_, index) => (
+                <CodeInput
+                    innerRef={refs[index]}
+                    value={text[index]}
+                    onInput={(e) => onInput(e, index)}
+                    onBackspace={handleDelete}
+                    key={index}
+                    index={index}
+                />
             ))}
         </div>
     );
 };
 
-const CodeInput = ({ index }: { index: number }) => {
+const CodeInput = ({
+    index,
+    value,
+    onInput,
+    onBackspace,
+    innerRef,
+}: {
+    index: number;
+    value: number;
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBackspace: (index: number) => void;
+    innerRef: React.MutableRefObject<HTMLInputElement | undefined>;
+}) => {
+    //This logic is to automatically focus the next input after number input or the former if the delete key is pressed
+
     return (
         <input
             id={index.toString()}
-            //This logic is to automatically focus the next input after number input or the former if the delete key is pressed
-            onKeyUp={(event) => {
-                const currentElement = document.getElementById(
-                    index.toString()
-                ) as HTMLInputElement | null;
-                //Checking if the current input is empty prevents the cursor skipping an input field
-                if (event.code === 'Backspace' && !currentElement?.value) {
-                    const element = document.getElementById((index - 1).toString());
-                    if (element) element.focus();
+            value={value.toString()}
+            onKeyDown={(event) => {
+                const nativeEvent = event.nativeEvent;
+                if (nativeEvent.code === ('Backspace' || 'Delete')) {
+                    onBackspace(index);
                 }
             }}
-            onInput={(event) => {
-                const nativeEvent = event.nativeEvent as InputEvent;
-                const updatedIndex = nativeEvent.inputType === 'insertText' ? index + 1 : index - 1;
-                const element = document.getElementById(updatedIndex.toString());
-                if (element) {
-                    element.focus();
-                }
+            onChange={(event) => {
+                onInput(event);
             }}
             name={'multifactorCode'}
             required={true}
@@ -117,8 +175,9 @@ const CodeInput = ({ index }: { index: number }) => {
             className={
                 'h-12 w-12 appearance-none rounded-md border border-white/30 bg-neutral-900 p-2 text-center text-xl'
             }
-            type='number'
             inputMode={'numeric'}
+            // @ts-ignore
+            ref={innerRef}
         />
     );
 };

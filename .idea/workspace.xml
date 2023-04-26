@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add login logic">
-      <change afterPath="$PROJECT_DIR$/app/ui/components/form/TextInput.tsx" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="fix some mobile styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +121,8 @@
       <workItem from="1682352870158" duration="1983000" />
       <workItem from="1682435952583" duration="2059000" />
       <workItem from="1682438025724" duration="7164000" />
-      <workItem from="1682527039111" duration="4169000" />
+      <workItem from="1682527039111" duration="4214000" />
+      <workItem from="1682531532720" duration="3866000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -204,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682444644010</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix some mobile styling">
+      <created>1682531250848</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682531250848</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +229,8 @@
     <MESSAGE value="improve error catching when creating and viewing applications" />
     <MESSAGE value="add axios logic" />
     <MESSAGE value="add login logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add login logic" />
+    <MESSAGE value="fix some mobile styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix some mobile styling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
