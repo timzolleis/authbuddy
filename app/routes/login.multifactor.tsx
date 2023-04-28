@@ -96,6 +96,7 @@ const MultifactorCodeInput = ({ length }: { length: number }) => {
     };
 
     const handleTextPaste = (index: number, value: string) => {
+        console.log('Inserted', value);
         const code = [...text];
         value.split('').forEach((value, valueIndex, array) => {
             code[index + valueIndex] = value;
@@ -120,7 +121,8 @@ const MultifactorCodeInput = ({ length }: { length: number }) => {
             handleTextInput(index, event.target.value);
         }
         if (nativeEvent.inputType === 'insertFromPaste') {
-            if (!isNaN(number)) return;
+            console.log('pasted');
+            if (isNaN(number)) return;
             handleTextPaste(index, event.target.value);
         }
     };
@@ -171,7 +173,6 @@ const CodeInput = ({
             }}
             name={'multifactorCode'}
             required={true}
-            maxLength={1}
             className={
                 'h-12 w-12 appearance-none rounded-md border border-white/30 bg-neutral-900 p-2 text-center text-xl'
             }
