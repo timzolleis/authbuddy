@@ -39,6 +39,17 @@ model User {
   avatarUrl    String
   role         ROLE
   applications Application[]
+  accessLog    AccessLog[]
+}
+
+model AccessLog {
+  userId        String
+  user          User   @relation(fields: [userId], references: [id])
+  applicationId String
+  date          Float
+  ip            String
+
+  @@id([userId, applicationId, date])
 }
 
 enum ROLE {

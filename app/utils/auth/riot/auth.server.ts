@@ -3,15 +3,20 @@ import { easePoly } from 'd3-ease';
 import { getMultifactorCookies } from '~/utils/auth/riot/cookies.server';
 import { encryptString } from '~/utils/encryption/encryption';
 import { cli } from '@remix-run/dev';
+import { asyncScheduler } from 'rxjs';
+import { backIn } from 'framer-motion';
+import { User } from '~/utils/auth/user.server';
 
 type AuthType = 'multifactor' | 'response';
 
 export interface AuthResponse {
     requiresMultifactor: boolean;
 }
+
 export interface AccessTokenResponse extends AuthResponse {
     accessToken: string;
 }
+
 export interface MultifactorResponse extends AuthResponse {
     response: ValorantAuthenticationMultifactorResponse;
     asid: string;
@@ -46,6 +51,46 @@ interface ValorantAuthenticationMultifactorResponse {
     multifactor: Multifactor;
     country: string;
     securityProfile: string;
+}
+
+export interface Pw {
+    cng_at: number;
+    reset: boolean;
+    must_reset: boolean;
+}
+
+export interface Acct {
+    type: number;
+    state: string;
+    adm: boolean;
+    game_name: string;
+    tag_line: string;
+    created_at: number;
+}
+
+export interface Affinity {
+    pp: string;
+}
+
+export interface RSOUserInfo {
+    country: string;
+    sub: string;
+    email_verified: boolean;
+    player_plocale?: any;
+    country_at: number;
+    pw: Pw;
+    phone_number_verified: boolean;
+    account_verified: boolean;
+    ppid?: any;
+    player_locale: string;
+    acct: Acct;
+    age: number;
+    jti: string;
+    affinity: Affinity;
+}
+
+export interface ValorantEntitlementsResponse {
+    entitlements_token: string;
 }
 
 const authUrl = 'https://auth.riotgames.com';
@@ -138,6 +183,20 @@ export async function requestAccessTokenWithMultifactorCode({
     };
 }
 
+async function requestEntitlementsToken(accessToken: string) {
+    const client = await getLoginClient(authUrl);
+    const response = await client.post<ValorantEntitlementsResponse>(
+        '/api/token/v1',
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    );
+    return response.data.entitlements_token;
+}
+
 function parseToken(uri: string) {
     const url = new URL(uri);
     const params = new URLSearchParams(url.hash.substring(1));
@@ -152,4 +211,16 @@ export function requiresMultifactorAuthentication(
     res: ValorantAuthenticationTokenResponse | ValorantAuthenticationMultifactorResponse
 ): res is ValorantAuthenticationMultifactorResponse {
     return res.type === 'multifactor';
+}
+
+export async function setRiotUser(accessToken: string) {}
+
+async function requestUserData(accessToken: string) {
+    const client = await getLoginClient(authUrl);
+    const response = await client.get<RSOUserInfo>('/userinfo', {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+    const user = new User(response.data.sub, response.data.acct.game_name);
 }
