@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="fix error with pasting into mfa code field">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/user.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/user.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +125,7 @@
       <workItem from="1682708050855" duration="987000" />
       <workItem from="1682805245779" duration="1450000" />
       <workItem from="1683400019716" duration="599000" />
+      <workItem from="1684139801348" duration="164000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -220,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682712110266</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix error with pasting into mfa code field">
+      <created>1684139951295</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684139951295</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

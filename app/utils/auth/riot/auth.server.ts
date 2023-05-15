@@ -222,5 +222,4 @@ async function requestUserData(accessToken: string) {
             Authorization: `Bearer ${accessToken}`,
         },
     });
-    const user = new User(response.data.sub, response.data.acct.game_name);
 }
