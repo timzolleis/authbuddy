@@ -1,30 +1,29 @@
 import { Form, Link, Outlet, useLoaderData } from '@remix-run/react';
-import { Button } from '~/ui/components/button/Button';
+import { Button } from '~/components/ui/Button';
 import { DataFunctionArgs, json } from '@remix-run/node';
-import { requireParam } from '~/utils/params/params.server';
+import { requireParameter } from '~/utils/params/params.server';
 import {
     findApplication,
     requireApplicationOwnership,
-    requireUserApplication,
 } from '~/utils/prisma/models/application.server';
 import { requireDeveloper } from '~/utils/auth/session.server';
-import { DangerIcon } from '~/ui/icons/DangerIcon';
+import { DangerIcon } from '~/components/icons/DangerIcon';
 import { useState } from 'react';
-import { EyeIcon } from '~/ui/icons/EyeIcon';
+import { EyeIcon } from '~/components/icons/EyeIcon';
 import { getRedactedString } from '~/utils/hooks/user';
 import { Secret } from '.prisma/client';
 import { DateTime } from 'luxon';
-import { CopyIcon } from '~/ui/icons/CopyIcon';
+import { CopyIcon } from '~/components/icons/CopyIcon';
 import { requireFormDataField } from '~/utils/form/formdata.server';
 import { hideSecret, revokeSecret } from '~/utils/prisma/models/secret.server';
 import { flashMessage } from '~/utils/flash/flashmessages.server';
-import { ErrorComponent } from '~/ui/components/error/ErrorComponent';
+import { ErrorComponent } from '~/components/features/error/ErrorComponent';
 import { EntityNotFoundException } from '~/exception/EntityNotFoundException';
 
 export const loader = async ({ params, request }: DataFunctionArgs) => {
-    const applicationId = requireParam('applicationId', params);
+    const applicationId = requireParameter('applicationId', params);
     const user = await requireDeveloper(request);
-    const application = await findApplication(applicationId, user.id);
+    const application = await findApplication(applicationId, user.id, true);
     if (!application) {
         throw new EntityNotFoundException('application');
     }
@@ -32,7 +31,7 @@ export const loader = async ({ params, request }: DataFunctionArgs) => {
 };
 
 export const action = async ({ request, params }: DataFunctionArgs) => {
-    const applicationId = requireParam('applicationId', params);
+    const applicationId = requireParameter('applicationId', params);
     const user = await requireDeveloper(request);
     await requireApplicationOwnership(applicationId, user.id);
     const formData = await request.formData();
@@ -90,7 +89,7 @@ const ApplicationSecretsPage = () => {
                         environment variables, since they will be hashed in the database and can not
                         be read again.
                     </p>
-                    {application.secrets.length > 0 ? (
+                    {application.secrets?.length > 0 ? (
                         application.secrets.map((secret) => (
                             <SecretComponent key={secret.id} secret={secret} />
                         ))
@@ -116,9 +115,12 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
     };
 
     return (
-        <div className={'flex items-center justify-between rounded-md border border-white/30 p-4'}>
+        <div
+            className={
+                'flex min-w-0 items-center justify-between rounded-md border border-white/30 p-4'
+            }>
             <div className={'min-w-0'}>
-                <span className={'flex min-w-0 items-center gap-2'}>
+                <div className={'flex items-center gap-2'}>
                     <p>{secret.name}</p>
                     {secret.hidden ? null : (
                         <span className={'flex items-center gap-2'}>
@@ -128,7 +130,7 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
                                 hover={'pointer'}></EyeIcon>
                         </span>
                     )}
-                </span>
+                </div>
                 <p className={'truncate text-sm text-neutral-400'}>
                     {secret.hidden
                         ? `${getRedactedString()}${secret.lastCharacters}`
@@ -152,35 +154,19 @@ const SecretComponent = ({ secret }: { secret: Secret }) => {
             </div>
 
             <Form method={'POST'} className={'min-w-max'}>
-                <span className={'flex flex-col gap-2 space-x-2'}>
+                <span className={'flex flex-col gap-2 md:flex-row'}>
                     <input type='hidden' name={'secretId'} defaultValue={secret.id} />
                     {secret.hidden ? null : (
-                        <Button value={'hide'} color={'secondary'} padding={'medium'}>
+                        <Button name={'intent'} value={'hide'} color={'secondary'}>
                             Hide secret
                         </Button>
                     )}
-                    <Button value={'revoke'} color={'danger'} padding={'medium'}>
+                    <Button name={'intent'} value={'revoke'} variant={'destructive'}>
                         Revoke secret
                     </Button>
                 </span>
             </Form>
         </div>
-    );
-};
-
-const NoClientSecrets = () => {
-    return (
-        <main>
-            <section className={'rounded border border-white/30 p-5 lg:p-10'}>
-                <span className={'flex items-center gap-2'}>
-                    <DangerIcon size={'sm'} />
-                    <h1 className={'text-headline-medium font-bold'}>No client secrets</h1>
-                </span>
-                <p className={'text-sm text-neutral-300'}>
-                    It looks like you dont have any client secrets.
-                </p>
-            </section>
-        </main>
     );
 };
 

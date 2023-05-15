@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
@@ -8,18 +9,30 @@ datasource db {
 }
 
 model Application {
-  id          String   @id @default(uuid())
-  userId      String
-  name        String
-  clientId    String   @unique @default(uuid())
-  redirectUrl String
-  description String?
-  homepage    String
-  user        User     @relation(fields: [userId], references: [id])
-  secrets     Secret[]
-  deactivated Boolean  @default(false)
+  id               String            @id @default(uuid())
+  userId           String
+  name             String
+  clientId         String            @unique @default(uuid())
+  redirectUrl      String
+  description      String?
+  homepage         String
+  user             User              @relation(fields: [userId], references: [id])
+  secrets          Secret[]
+  deactivated      Boolean           @default(false)
+  imageUrl         String?
+  ownImage         Boolean           @default(false)
+  imageAttribution ImageAttribution?
 
   @@unique([id, userId])
+}
+
+model ImageAttribution {
+  applicationId String      @id
+  application   Application @relation(fields: [applicationId], references: [id])
+  authorName    String
+  authorUrl     String
+  platformName  String
+  platformUrl   String
 }
 
 model Secret {

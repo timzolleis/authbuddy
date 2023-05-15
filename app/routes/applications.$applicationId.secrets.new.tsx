@@ -1,10 +1,10 @@
-import { Modal } from '~/ui/components/modal/Modal';
+import { Modal } from '~/components/features/modal/Modal';
 import { Form, useLoaderData, useNavigate, useRevalidator } from '@remix-run/react';
 import { generateSecret } from '~/utils/encryption/secret.server';
 import { DataFunctionArgs, json, redirect } from '@remix-run/node';
-import { FormTextInput } from '~/ui/components/form/FormTextInput';
-import { Button } from '~/ui/components/button/Button';
-import { requireParam } from '~/utils/params/params.server';
+import { Input } from '~/ui/components/form/Input';
+import { Button } from '~/components/ui/Button';
+import { requireParameter } from '~/utils/params/params.server';
 import { requireDeveloper } from '~/utils/auth/session.server';
 import { prisma } from '~/utils/prisma/prisma.server';
 import { DateTime } from 'luxon';
@@ -17,7 +17,7 @@ export const loader = async () => {
 };
 
 export const action = async ({ request, params }: DataFunctionArgs) => {
-    const applicationId = requireParam('applicationId', params);
+    const applicationId = requireParameter('applicationId', params);
     const user = await requireDeveloper(request);
     const formData = await request.formData();
     const applicationSecretName = requireFormDataField(
@@ -42,7 +42,7 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
     });
     //In order to redirect
     const redirectionUrl = request.url.substring(0, request.url.lastIndexOf('/'));
-    return redirect(`${redirectionUrl}`, {
+    return redirect(redirectionUrl, {
         headers: {
             'Set-Cookie': await flashMessage(request, {
                 message: 'Secret created',
@@ -54,35 +54,33 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
 
 const CreateApplicationSecretsPage = () => {
     const { secret } = useLoaderData<typeof loader>();
-
     const navigate = useNavigate();
     const { revalidate } = useRevalidator();
     return (
         <Modal toggleModal={() => navigate(-1)} showModal={true}>
             <Form method={'POST'}>
                 <h3 className={'text-title-small font-medium'}>Create secret</h3>
-                <FormTextInput
-                    name={'applicationSecretName'}
-                    required={true}
-                    placeholder={'My fancy secret #1'}
-                    labelText={'Secret name'}
-                />
-                <FormTextInput
-                    name={'applicationSecret'}
-                    required={true}
-                    placeholder={'secret'}
-                    labelText={'Application secret'}
-                    defaultValue={secret}></FormTextInput>
-                <span className={'flex justify-end gap-2'}>
-                    <Button
-                        onClick={() => revalidate()}
-                        type={'button'}
-                        color={'secondary'}
-                        padding={'medium'}>
-                        Regenerate
-                    </Button>
-                    <Button padding={'medium'}>Create</Button>
-                </span>
+                <div className={'space-y-2'}>
+                    <Input
+                        name={'applicationSecretName'}
+                        required={true}
+                        placeholder={'My fancy secret #1'}
+                        label={'Secret name'}
+                    />
+                    <Input
+                        name={'applicationSecret'}
+                        required={true}
+                        placeholder={'secret'}
+                        label={'Application secret'}
+                        defaultValue={secret}
+                    />
+                    <span className={'flex justify-end gap-2'}>
+                        <Button onClick={() => revalidate()} type={'button'} variant={'secondary'}>
+                            Regenerate
+                        </Button>
+                        <Button>Create</Button>
+                    </span>
+                </div>
             </Form>
         </Modal>
     );

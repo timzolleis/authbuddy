@@ -1,5 +1,5 @@
 import type { V2_MetaFunction } from '@remix-run/react';
-import { Button } from '~/ui/components/button/Button';
+import { Button } from '~/components/ui/Button';
 import { Accordion, AccordionBody, AccordionHeader, AccordionList } from '@tremor/react';
 import { faq } from '~/content/faq';
 

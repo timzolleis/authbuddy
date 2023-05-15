@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { internalAuthConfiguration } from '~/config/internal-auth';
-import { GithubUserInformation } from '~/models/auth/internal/github/GithubUserInformationResponse';
-import { GoogleUserInformationResponse } from '~/models/auth/internal/google/GoogleUserInformationResponse';
-import { DiscordUserInformationResponse } from '~/models/auth/internal/discord/DiscordUserInformationResponse';
-import { da } from 'date-fns/locale';
+import { GithubUserInformation } from '~/types/auth/internal/github/GithubUserInformationResponse';
+import { GoogleUserInformationResponse } from '~/types/auth/internal/google/GoogleUserInformationResponse';
+import { DiscordUserInformationResponse } from '~/types/auth/internal/discord/DiscordUserInformationResponse';
 import { User } from '~/utils/auth/user.server';
 
 interface UserInfoProvider {

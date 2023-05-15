@@ -1,5 +1,4 @@
 import { commitAuthbuddySession, getAuthbuddySession } from '~/utils/flash/session.server';
-import { json } from '@remix-run/node';
 
 type MessageType = 'normal' | 'action' | 'success' | 'error' | 'loading';
 

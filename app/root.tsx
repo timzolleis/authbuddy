@@ -7,17 +7,16 @@ import {
     ScrollRestoration,
     useLoaderData,
 } from '@remix-run/react';
-
-import styles from './styles/app.css';
+import stylesheet from '~/tailwind.css';
 import { DataFunctionArgs, json, LinksFunction } from '@remix-run/node';
-import { AppLayout } from '~/ui/layout/AppLayout';
-import { commitLoginSession, getLoginSession, getUser } from '~/utils/auth/session.server';
-import { toast, Toaster } from 'sonner';
+import { AppLayout } from '~/components/features/layout/AppLayout';
+import { getUser } from '~/utils/auth/session.server';
+import { Toaster } from 'sonner';
 import { getFlashMessage } from '~/utils/flash/flashmessages.server';
 import { toastMessage } from '~/utils/hooks/toast';
 import { useEffect } from 'react';
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }];
 
 export const loader = async ({ request }: DataFunctionArgs) => {
     const user = await getUser(request);
@@ -45,7 +44,7 @@ export default function App() {
                 <Meta />
                 <Links />
             </head>
-            <body className={'bg-neutral-900'}>
+            <body className={'bg-background'}>
                 <AppLayout>
                     <Toaster position={'top-right'} theme={'dark'} />
                     <Outlet />

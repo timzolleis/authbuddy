@@ -1,12 +1,14 @@
 import { isRouteErrorResponse, Outlet, useRouteError } from '@remix-run/react';
-import { EntityNotFoundException } from '~/exception/EntityNotFoundException';
-import { errorTranslations } from '~/content/error-translations';
-import { ErrorComponent } from '~/ui/components/error/ErrorComponent';
+import { ErrorComponent } from '~/components/features/error/ErrorComponent';
 
 const links = [
     {
         name: 'Settings',
         href: 'settings',
+    },
+    {
+        name: 'Image',
+        href: 'image',
     },
     {
         name: 'Secrets',

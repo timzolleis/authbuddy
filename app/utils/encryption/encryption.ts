@@ -1,7 +1,6 @@
 import * as crypto from 'crypto';
 import * as process from 'process';
 import { EnvRequiredException } from '~/exception/EnvRequiredException';
-import { da, de } from 'date-fns/locale';
 
 if (!process.env.ENCRYPTION_KEY) {
     throw new EnvRequiredException('ENCRYPTION_KEY');

@@ -1,18 +1,15 @@
 import { DataFunctionArgs, json, redirect } from '@remix-run/node';
 import { prisma } from '~/utils/prisma/prisma.server';
-import { Form, Link, useLoaderData, useRouteError, useSearchParams } from '@remix-run/react';
-import { PageHeader } from '~/ui/components/page/PageHeader';
-import { Button } from '~/ui/components/button/Button';
-import {
-    ApplicationFormComponent,
-    validateApplicationFormData,
-} from '~/routes/applications.new/route';
+import { Form, Link, useLoaderData, useSearchParams } from '@remix-run/react';
+import { PageHeader } from '~/components/ui/PageHeader';
+import { Button } from '~/components/ui/Button';
+import { ApplicationForm, validateApplicationFormData } from '~/routes/applications.new';
 import { requireDeveloper } from '~/utils/auth/session.server';
-import { DangerZone, DangerZoneAction } from '~/ui/components/common/DangerZone';
-import { useModal } from '~/ui/components/modal/Modal';
-import { ConfirmDangerousActionModal } from '~/ui/components/modal/ConfirmDangerousActionModal';
+import { DangerZone, DangerZoneAction } from '~/components/features/DangerZone';
+import { useModal } from '~/components/features/modal/Modal';
+import { ConfirmDangerousActionModal } from '~/components/features/modal/ConfirmDangerousActionModal';
 import { useEffect } from 'react';
-import { Badge } from '~/ui/components/common/Badge';
+import { Badge } from '~/components/ui/Badge';
 
 import {
     changeApplicationStatus,
@@ -116,22 +113,20 @@ const ApplicationPage = () => {
     }, [searchParams]);
 
     return (
-        <div className={'flex w-full items-start justify-center gap-5'}>
-            <Form method={'POST'} className={'grid w-full gap-2 '}>
+        <div className={'flex w-full items-start justify-center gap-6'}>
+            <Form method={'POST'} className={'grid w-full gap-4'}>
                 <span className={'flex flex-col items-start justify-start'}>
                     <p className={'text-sm text-neutral-500'}> Application</p>
                     <PageHeader>{application.name}</PageHeader>
-                    <Badge
-                        text={application.deactivated ? 'Not active' : 'Active'}
-                        color={application.deactivated ? 'red' : 'green'}></Badge>
+                    <Badge variant={application.deactivated ? 'red' : 'green'}>
+                        {application.deactivated ? 'Not active' : 'Active'}
+                    </Badge>
                 </span>
-                <ApplicationFormComponent application={application} />
-                <div className={'flex items-center gap-2 border-t border-t-white/30 py-2'}>
-                    <Button value={'update'} width={'normal'}>
-                        Save changes
-                    </Button>
+                <ApplicationForm application={application} />
+                <div className={'flex items-center gap-2 border-t border-t-white/30 py-4'}>
+                    <Button value={'update'}>Save changes</Button>
                     <Link to={'/applications'}>
-                        <Button color={'secondary'}>Cancel</Button>
+                        <Button variant={'secondary'}>Cancel</Button>
                     </Link>
                 </div>
                 <DangerZone>

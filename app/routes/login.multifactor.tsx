@@ -6,12 +6,10 @@ import {
     V2_MetaFunction,
 } from '@remix-run/react';
 import { DataFunctionArgs, json } from '@remix-run/node';
-import { Button } from '~/ui/components/button/Button';
+import { Button } from '~/components/ui/Button';
 import { decryptString } from '~/utils/encryption/encryption';
 import { requestAccessTokenWithMultifactorCode } from '~/utils/auth/riot/auth.server';
-import { da } from 'date-fns/locale';
 import React, { useRef, useState } from 'react';
-import { inner } from '@floating-ui/react';
 
 export const meta: V2_MetaFunction = () => {
     return [{ title: 'AuthBuddy | Multifactor' }];
@@ -64,9 +62,7 @@ const MultifactorLoginPage = () => {
             <MultifactorCodeInput length={codeLength} />
             <p className={' mt-2 text-center text-sm text-red-500'}>{data?.error}</p>
             <span className={'mt-5 flex justify-end'}>
-                <Button font={'medium'} width={'full'} loading={loading}>
-                    {loading ? 'Submitting...' : 'Submit'}
-                </Button>
+                <Button loading={loading}>{loading ? 'Submitting...' : 'Submit'}</Button>
             </span>
         </Form>
     );

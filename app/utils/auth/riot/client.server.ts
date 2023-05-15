@@ -1,7 +1,7 @@
 import { get } from '@vercel/edge-config';
 import { ApplicationConfigException } from '~/exception/ApplicationConfigException';
 import * as https from 'https';
-import axios, { AxiosHeaders } from 'axios';
+import axios from 'axios';
 
 type Ciphers = string[] | undefined;
 type RiotConfig = {

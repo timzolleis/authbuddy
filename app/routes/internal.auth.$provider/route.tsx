@@ -1,9 +1,9 @@
 import { DataFunctionArgs, redirect } from '@remix-run/node';
 import { internalAuthConfiguration } from '~/config/internal-auth';
 import { InternalAuthenticator } from '~/utils/auth/oauth.server';
-import { Button } from '~/ui/components/button/Button';
+import { Button } from '~/components/ui/Button';
 import { Link, Params } from '@remix-run/react';
-import { DangerIcon } from '~/ui/icons/DangerIcon';
+import { DangerIcon } from '~/components/icons/DangerIcon';
 
 function hasProvider(
     providerName: string

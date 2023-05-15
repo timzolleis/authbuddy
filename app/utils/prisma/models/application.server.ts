@@ -1,6 +1,6 @@
 import { prisma } from '~/utils/prisma/prisma.server';
-import { tr } from 'date-fns/locale';
 import { InsufficientPermissionsException } from '~/exception/InsufficientPermissionsException';
+import { Application } from '.prisma/client';
 
 export async function requireApplicationOwnership(applicationId: string, userId: string) {
     const application = await prisma.application.findUnique({
@@ -32,6 +32,7 @@ export async function findApplication(
             },
             include: {
                 secrets: includeSecrets,
+                imageAttribution: true,
             },
         });
     }
@@ -41,6 +42,7 @@ export async function findApplication(
         },
         include: {
             secrets: includeSecrets,
+            imageAttribution: true,
         },
     });
 }
@@ -59,6 +61,7 @@ export async function requireUserApplication(
         },
         include: {
             secrets: includeSecrets,
+            imageAttribution: true,
         },
     });
 
@@ -99,4 +102,24 @@ export async function deleteApplication(applicationId: string, userId: string) {
             },
         })
         .catch();
+}
+
+export async function createImageAttribution({
+    applicationId,
+    authorName,
+    authorUrl,
+    platformName,
+    platformUrl,
+}: {
+    applicationId: Application['id'];
+    authorName: string;
+    authorUrl: string;
+    platformName: string;
+    platformUrl: string;
+}) {
+    return prisma.imageAttribution.upsert({
+        where: { applicationId },
+        create: { applicationId, authorName, authorUrl, platformName, platformUrl },
+        update: { authorName, authorUrl, platformName, platformUrl },
+    });
 }

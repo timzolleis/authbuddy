@@ -1,11 +1,6 @@
 import { getLoginClient } from '~/utils/auth/riot/client.server';
-import { easePoly } from 'd3-ease';
 import { getMultifactorCookies } from '~/utils/auth/riot/cookies.server';
 import { encryptString } from '~/utils/encryption/encryption';
-import { cli } from '@remix-run/dev';
-import { asyncScheduler } from 'rxjs';
-import { backIn } from 'framer-motion';
-import { User } from '~/utils/auth/user.server';
 
 type AuthType = 'multifactor' | 'response';
 

@@ -1,5 +1,4 @@
 import { Form, Link, V2_MetaFunction } from '@remix-run/react';
-import { Button } from '~/ui/components/button/Button';
 import {
     AvailableProvider,
     internalAuthConfiguration,

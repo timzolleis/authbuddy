@@ -1,7 +1,6 @@
-import { createCookieSessionStorage, redirect, Session } from '@remix-run/node';
+import { createCookieSessionStorage, Session } from '@remix-run/node';
 import * as process from 'process';
 import { EnvRequiredException } from '~/exception/EnvRequiredException';
-import { User } from '~/utils/auth/user.server';
 
 if (!process.env.APPLICATION_SECRET) {
     throw new EnvRequiredException('APPLICATION_SECRET');
