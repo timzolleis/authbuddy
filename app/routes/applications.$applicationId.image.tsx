@@ -4,12 +4,11 @@ import { PageHeader } from '~/components/ui/PageHeader';
 import { requireDeveloper } from '~/utils/auth/session.server';
 
 import { createImageAttribution, findApplication } from '~/utils/prisma/models/application.server';
-import { requireResult } from '~/utils/general-utils.server';
+import { requireParameter, requireResult } from '~/utils/general-utils.server';
 import { getRandomPhoto } from '~/utils/unsplash/unsplash.server';
-import { requireParameter } from '~/utils/params/params.server';
 import { prisma } from '~/utils/prisma/prisma.server';
 import { Label } from '~/components/ui/Label';
-import { Input } from '~/ui/components/form/Input';
+import { Input } from '~/components/ui/Input';
 import { Button } from '~/components/ui/Button';
 //TODO: ADD IMAGE UPLOAD
 export const loader = async ({ request, params }: DataFunctionArgs) => {

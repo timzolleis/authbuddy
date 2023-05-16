@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { Input, InputProps } from '~/ui/components/form/Input';
+import { Input, InputProps } from '~/components/ui/Input';
 import { Label } from '~/components/ui/Label';
 import { cn } from '~/utils/css';
 import { Button } from '~/components/ui/Button';
 import { Eye, EyeOff } from 'lucide-react';
 
-export const Password = React.forwardRef<HTMLInputElement, InputProps>(
+export const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, type, ...props }, ref) => {
         const [showPassword, setShowPassword] = useState(false);
         const passwordInputRef = useRef<HTMLInputElement>(null);

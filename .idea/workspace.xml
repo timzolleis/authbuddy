@@ -4,112 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="restructure ui">
-      <change afterPath="$PROJECT_DIR$/app/components/ui/Checkbox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/ui/Label.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.image.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/tailwind.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/types/unsplash/unsplash-image.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ui/components/form/TextArea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/css.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/general-utils.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/unsplash/unsplash.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/upload/uploadthing.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/img/login-splash.jpg" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add updating and restructure">
+      <change afterPath="$PROJECT_DIR$/app/routes/api.update-riot-config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/valorant-api/valorant-api-response.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/valorant-api/valorant-api-version.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/vercel/edge-config.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/valorant-api/valorant-api-version.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/vercel/update-edge-config.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/auth/internal/discord/DiscordUserInformationResponse.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/types/auth/internal/discord/DiscordUserInformationResponse.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/auth/internal/github/GithubUserInformationResponse.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/types/auth/internal/github/GithubUserInformationResponse.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/auth/internal/google/GoogleUserInformationResponse.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/types/auth/internal/google/GoogleUserInformationResponse.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.image.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.new.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.secrets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.settings/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.$applicationId.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications._index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/applications.new/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.new.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/internal.auth.$provider/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/internal.auth.$provider/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/CreatSecretComponent.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/common/Badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/Badge.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/common/DangerZone.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/DangerZone.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/error/ErrorComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/error/ErrorComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/form/FormTextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/form/Input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/ui/components/form/TextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/modal/ConfirmDangerousActionModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/modal/ConfirmDangerousActionModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/modal/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/modal/Modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/PageNavComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/navigation/PageNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/nav/SideNavComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/navigation/SideNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/page/PageHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/PageHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/components/user/UserComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/user/UserAvatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/CloseIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/CloseIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/ClosedEyeIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/ClosedEyeIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/CopyIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/CopyIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/DangerIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/DangerIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/ExternalLinkIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/ExternalLinkIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/EyeIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/EyeIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/Icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/Icon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/icons/PlusIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/icons/PlusIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ui/layout/AppLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/features/layout/AppLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applications.new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applications.new.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/internal.auth.$provider.callback/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/internal.auth.$provider.callback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/internal.auth.$provider/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/internal.auth.$provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login._index/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.developer/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.developer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/form/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/form/TextArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/TextArea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ui/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/PasswordInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/userinfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/userinfo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/flash/flashmessages.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/flash/flashmessages.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/flash/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/flash/session.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/form/formdata.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/form/formdata.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/params/params.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/params/params.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/prisma/models/application.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authbuddy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/authbuddy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Black.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Black.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Black.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Black.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-BlackItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-BlackItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-BlackItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-BlackItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Bold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Bold.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Bold.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Bold.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-BoldItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-BoldItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-BoldItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-BoldItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraBold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraBold.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraBold.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraBold.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraBoldItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraBoldItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraBoldItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraBoldItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraLight.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraLight.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraLight.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraLight.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraLightItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraLightItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ExtraLightItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ExtraLightItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Italic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Italic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Italic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Italic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Light.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Light.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Light.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Light.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-LightItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-LightItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-LightItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-LightItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Medium.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Medium.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Medium.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Medium.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-MediumItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-MediumItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-MediumItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-MediumItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Regular.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Regular.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-SemiBold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-SemiBold.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-SemiBold.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-SemiBold.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-SemiBoldItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-SemiBoldItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-SemiBoldItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-SemiBoldItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Thin.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Thin.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-Thin.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-Thin.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ThinItalic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ThinItalic.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-ThinItalic.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-ThinItalic.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-italic.var.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-italic.var.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/resources/fonts/inter/Inter-roman.var.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/inter/Inter-roman.var.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/remix.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/remix.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/general-utils.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/general-utils.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/hooks/toast.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/flash/toast.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/params/params.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/ts/key.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/valorant-api/ValorantApiClient.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,11 +102,11 @@
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\routes\login._index" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public" />
-      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources" />
-      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public\resources\img" />
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\utils\flash" />
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\routes" />
-      <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\components\features" />
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\" />
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\components\ui" />
+      <recent name="C:\Users\tim\IdeaProjects\authbuddy\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -237,7 +157,8 @@
       <workItem from="1684139801348" duration="6663000" />
       <workItem from="1684146563498" duration="1204000" />
       <workItem from="1684147781122" duration="9247000" />
-      <workItem from="1684163793985" duration="3828000" />
+      <workItem from="1684163793985" duration="3909000" />
+      <workItem from="1684230662997" duration="3507000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -344,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684139973151</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="restructure ui">
+      <created>1684173225696</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1684173225696</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +304,8 @@
     <MESSAGE value="fix some bugs in mfa" />
     <MESSAGE value="fix error with pasting into mfa code field" />
     <MESSAGE value="restructure ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructure ui" />
+    <MESSAGE value="add updating and restructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="add updating and restructure" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

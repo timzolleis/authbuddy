@@ -16,7 +16,7 @@ type RiotConfig = {
     riotClientBuild: string;
 };
 
-async function getConfig() {
+export async function getConfig() {
     const config = await get<RiotConfig>('riotConfig');
     if (!config) {
         throw new ApplicationConfigException(

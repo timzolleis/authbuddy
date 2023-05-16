@@ -1,13 +1,12 @@
 import { Form, Link, Outlet, useLoaderData } from '@remix-run/react';
 import { Button } from '~/components/ui/Button';
 import { DataFunctionArgs, json } from '@remix-run/node';
-import { requireParameter } from '~/utils/params/params.server';
+import { requireParameter } from '~/utils/general-utils.server';
 import {
     findApplication,
     requireApplicationOwnership,
 } from '~/utils/prisma/models/application.server';
 import { requireDeveloper } from '~/utils/auth/session.server';
-import { DangerIcon } from '~/components/icons/DangerIcon';
 import { useState } from 'react';
 import { EyeIcon } from '~/components/icons/EyeIcon';
 import { getRedactedString } from '~/utils/hooks/user';

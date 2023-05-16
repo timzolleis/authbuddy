@@ -2,14 +2,14 @@ import { DataFunctionArgs, json, redirect } from '@remix-run/node';
 import * as crypto from 'crypto';
 import { Form, Link } from '@remix-run/react';
 import { PageHeader } from '~/components/ui/PageHeader';
-import { Input } from '~/ui/components/form/Input';
+import { Input } from '~/components/ui/Input';
 import { Button } from '~/components/ui/Button';
 import { prisma } from '~/utils/prisma/prisma.server';
 import { requireDeveloper } from '~/utils/auth/session.server';
 import { Application } from '.prisma/client';
 import { ErrorComponent } from '~/components/features/error/ErrorComponent';
 import { requireFormDataField } from '~/utils/form/formdata.server';
-import { Textarea } from '~/ui/components/form/TextArea';
+import { Textarea } from '~/components/ui/TextArea';
 
 export function validateApplicationFormData(formData: FormData) {
     const errors = new Map<string, string>();

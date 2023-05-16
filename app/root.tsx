@@ -13,7 +13,7 @@ import { AppLayout } from '~/components/features/layout/AppLayout';
 import { getUser } from '~/utils/auth/session.server';
 import { Toaster } from 'sonner';
 import { getFlashMessage } from '~/utils/flash/flashmessages.server';
-import { toastMessage } from '~/utils/hooks/toast';
+import { toastMessage } from '~/utils/flash/toast';
 import { useEffect } from 'react';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }];

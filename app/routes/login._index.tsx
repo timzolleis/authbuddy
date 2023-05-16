@@ -8,8 +8,8 @@ import {
 } from '~/utils/auth/riot/auth.server';
 import { DataFunctionArgs, redirect } from '@remix-run/node';
 import { requireFormDataField } from '~/utils/form/formdata.server';
-import { Password } from '~/ui/components/form/TextInput';
-import { Input } from '~/ui/components/form/Input';
+import { PasswordInput } from '~/components/ui/PasswordInput';
+import { Input } from '~/components/ui/Input';
 import { Checkbox } from '~/components/ui/Checkbox';
 import { Label } from '~/components/ui/Label';
 import { Loader2 } from 'lucide-react';
@@ -53,7 +53,7 @@ const LoginPage = () => {
             </div>
             <Form method={'POST'} className={'flex w-full flex-col gap-2'}>
                 <Input required={true} name={'username'} placeholder={'Username...'} />
-                <Password required={true} name={'password'} placeholder={'Password...'} />
+                <PasswordInput required={true} name={'password'} placeholder={'Password...'} />
                 <div className={'flex items-center gap-2'}>
                     <Checkbox name={'remember_me'} />
                     <Label>Remember me</Label>
