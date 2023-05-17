@@ -15,10 +15,11 @@ const { getSession, commitSession, destroySession } = createCookieSessionStorage
 });
 
 export async function getLoginSession(request: Request) {
-    return await getSession(request.headers.get('Cookie'));
+    return getSession(request.headers.get('Cookie'));
 }
+
 export async function commitLoginSession(session: Session) {
-    return await commitSession(session);
+    return commitSession(session);
 }
 
 export async function getUser(request: Request): Promise<User | undefined> {
@@ -29,12 +30,23 @@ export async function getUser(request: Request): Promise<User | undefined> {
 export async function setUser(request: Request, user: User) {
     const session = await getLoginSession(request);
     session.set('user', user);
-    return await commitSession(session);
+    return commitSession(session);
 }
 
-export async function destroyInternalUser(request: Request) {
+export async function getPlayer(request: Request): Promise<User | undefined> {
     const session = await getLoginSession(request);
-    return await destroySession(session);
+    return session.get('player');
+}
+
+export async function setPlayer(request: Request, user: User) {
+    const session = await getLoginSession(request);
+    session.set('player', user);
+    return commitSession(session);
+}
+
+export async function destroyUserSession(request: Request) {
+    const session = await getLoginSession(request);
+    return destroySession(session);
 }
 
 export async function requireDeveloper(request: Request) {

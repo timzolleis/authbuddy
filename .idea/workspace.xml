@@ -5,17 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add zod for environment variables">
-      <change afterPath="$PROJECT_DIR$/app/utils/env.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/ui/ErrorContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/config/oauth-config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/config/riot-endpoints.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/authorize.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/riot/get-player-loadout.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/riot/rso-userinfo.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/types/valorant-api/valorant-api-playercard.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/auth/authorization-request.server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/auth/temporary-session.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/oauth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/oauth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ui/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ui/PasswordInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ui/PasswordInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/api.update-riot-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/api.update-riot-config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/internal.auth.$provider.callback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/internal.auth.$provider.callback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login._index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login.multifactor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/logout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/riot/client.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/auth/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/session.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/flash/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/flash/session.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/env.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/env.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/general-utils.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/general-utils.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/unsplash/unsplash.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/unsplash/unsplash.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/vercel/update-edge-config.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/vercel/update-edge-config.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/hooks/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/hooks/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/valorant-api/valorant-api-version.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/valorant-api/valorant-api.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +49,7 @@
       <list>
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="tsconfig.json" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -37,7 +57,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="add-riot-login" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,7 +81,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "add-oauth-functionality",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/tim/IdeaProjects/authbuddy/app/routes",
     "list.type.of.created.stylesheet": "CSS",
@@ -258,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684173225696</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add zod for environment variables">
+      <created>1684332235073</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1684332235073</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

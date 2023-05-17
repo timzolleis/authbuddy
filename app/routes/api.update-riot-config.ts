@@ -1,7 +1,7 @@
 import { DataFunctionArgs, json } from '@remix-run/node';
-import { getVersion } from '~/utils/valorant-api/valorant-api-version.server';
 import { getConfig } from '~/utils/auth/riot/client.server';
 import { getEdgeConfigs, updateEdgeConfigItem } from '~/utils/vercel/update-edge-config.server';
+import { getVersion } from '~/utils/valorant-api/valorant-api.server';
 
 export const loader = async ({ request }: DataFunctionArgs) => {
     try {

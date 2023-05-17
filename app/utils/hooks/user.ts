@@ -13,7 +13,13 @@ export function useMatchesData(id: string): Record<string, unknown> | undefined 
 
 export function useOptionalUser(): User | undefined {
     const data = useMatchesData('root');
-    return data?.user as User | undefined;
+    if (data?.user) {
+        return data.user as User;
+    }
+    if (data?.player) {
+        return data.player as User;
+    }
+    return undefined;
 }
 
 export function getRedactedString() {

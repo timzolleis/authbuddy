@@ -10,7 +10,7 @@ import {
 import stylesheet from '~/tailwind.css';
 import { DataFunctionArgs, json, LinksFunction } from '@remix-run/node';
 import { AppLayout } from '~/components/features/layout/AppLayout';
-import { getUser } from '~/utils/auth/session.server';
+import { getPlayer, getUser } from '~/utils/auth/session.server';
 import { Toaster } from 'sonner';
 import { getFlashMessage } from '~/utils/flash/flashmessages.server';
 import { toastMessage } from '~/utils/flash/toast';
@@ -20,16 +20,16 @@ export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet
 
 export const loader = async ({ request }: DataFunctionArgs) => {
     const user = await getUser(request);
+    const player = await getPlayer(request);
     const { message, header } = await getFlashMessage(request);
 
-    return json({ user, message }, { headers: { 'Set-Cookie': header } });
+    return json({ user, player, message }, { headers: { 'Set-Cookie': header } });
 };
 
 export default function App() {
     const { user, message } = useLoaderData<typeof loader>();
     useEffect(() => {
         if (message) {
-            console.log('Toasting');
             toastMessage(message);
         }
     }, [message]);

@@ -24,6 +24,7 @@ model Application {
   imageAttribution ImageAttribution?
 
   @@unique([id, userId])
+  @@unique([clientId, redirectUrl])
 }
 
 model ImageAttribution {

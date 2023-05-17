@@ -17,7 +17,7 @@ const env = z.object({
 
     //Other connections
     DATABASE_URL: z.string(),
-    MIGRATION_DATABASE_URL: z.string(),
+    MIGRATE_DATABASE_URL: z.string(),
     EDGE_CONFIG: z.string(),
     VERCEL_TOKEN: z.string(),
     UNSPLASH_ACCESS_KEY: z.string(),
