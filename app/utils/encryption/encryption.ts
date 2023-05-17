@@ -1,13 +1,8 @@
 import * as crypto from 'crypto';
-import * as process from 'process';
-import { EnvRequiredException } from '~/exception/EnvRequiredException';
-
-if (!process.env.ENCRYPTION_KEY) {
-    throw new EnvRequiredException('ENCRYPTION_KEY');
-}
+import { environmentVariables } from '~/utils/env.server';
 
 const encryptionConfiguration = {
-    key: process.env.ENCRYPTION_KEY,
+    key: environmentVariables.ENCRYPTION_KEY,
     algorithm: 'aes-256-cbc',
 };
 

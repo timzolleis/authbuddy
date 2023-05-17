@@ -36,7 +36,8 @@
     "react-spinners": "^0.13.8",
     "sonner": "^0.3.5",
     "tailwind-merge": "^1.12.0",
-    "uploadthing": "^3.0.4"
+    "uploadthing": "^3.0.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.15.0",

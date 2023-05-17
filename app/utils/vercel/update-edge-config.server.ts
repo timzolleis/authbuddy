@@ -1,16 +1,14 @@
-import * as process from 'process';
-import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import axios from 'axios';
 import { EdgeConfig } from '~/types/vercel/edge-config';
+import { environmentVariables } from '~/utils/env.server';
 
 const baseURL = 'https://api.vercel.com';
 
 function getClient() {
-    const token = process.env.VERCEL_TOKEN;
-    if (!token) {
-        throw new EnvRequiredException('VERCEL_TOKEN');
-    }
-    return axios.create({ baseURL, headers: { Authorization: `Bearer ${token}` } });
+    return axios.create({
+        baseURL,
+        headers: { Authorization: `Bearer ${environmentVariables.VERCEL_TOKEN}` },
+    });
 }
 
 export async function getEdgeConfigs() {

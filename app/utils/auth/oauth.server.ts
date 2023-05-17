@@ -1,10 +1,9 @@
-import * as process from 'process';
 import type { OauthProvider } from '~/config/internal-auth';
-import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import * as crypto from 'crypto';
 import { redirect } from '@remix-run/node';
 import axios from 'axios';
 import { DiscordInfoProvider, GithubInfoProvider, GoogleInfoProvider } from '~/utils/auth/userinfo';
+import { environmentVariables } from '~/utils/env.server';
 
 export class InternalAuthenticator {
     readonly #provider: OauthProvider;
@@ -15,14 +14,8 @@ export class InternalAuthenticator {
 
     constructor(provider: OauthProvider) {
         const envProviderName = provider.name.toUpperCase();
-        const clientId = process.env[`${envProviderName}_CLIENT_ID`];
-        const clientSecret = process.env[`${envProviderName}_CLIENT_SECRET`];
-        if (!clientId) {
-            throw new EnvRequiredException(`${envProviderName}_CLIENT_ID`);
-        }
-        if (!clientSecret) {
-            throw new EnvRequiredException(`${envProviderName}_CLIENT_SECRET`);
-        }
+        const clientId = environmentVariables[`${envProviderName}_CLIENT_ID` as keyof typeof environmentVariables];
+        const clientSecret = environmentVariables[`${envProviderName}_CLIENT_SECRET` as keyof typeof environmentVariables];
         //Assign variables
         this.#provider = provider;
         this.#clientId = clientId;
@@ -32,10 +25,7 @@ export class InternalAuthenticator {
     }
 
     private getRedirectUri() {
-        const applicationUrl = process.env.APPLICATION_URL;
-        if (!applicationUrl) {
-            throw new EnvRequiredException('APPLICATION_URL');
-        }
+        const applicationUrl = environmentVariables.APPLICATION_URL;
         return `${applicationUrl}/internal/auth/${this.#provider.name.toLowerCase()}/callback`;
     }
 
