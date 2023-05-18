@@ -3,6 +3,7 @@ import * as process from 'process';
 import { EnvRequiredException } from '~/exception/EnvRequiredException';
 import { User } from '~/utils/auth/user.server';
 import { environmentVariables } from '~/utils/env.server';
+import { red } from 'kleur/colors';
 
 const { getSession, commitSession, destroySession } = createCookieSessionStorage({
     cookie: {
@@ -55,4 +56,12 @@ export async function requireDeveloper(request: Request) {
         throw redirect('/login/developer');
     }
     return user;
+}
+
+export async function requirePlayer(request: Request) {
+    const player = await getPlayer(request);
+    if (!player) {
+        throw redirect('/login');
+    }
+    return player;
 }

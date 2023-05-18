@@ -16,7 +16,6 @@ import { Loader2 } from 'lucide-react';
 import { zfd } from 'zod-form-data';
 import { getAuthorizationRequest } from '~/utils/auth/temporary-session.server';
 import { getUrlWithSearchParams, redirectToAuthorizationPage } from '~/utils/general-utils.server';
-import { getSearchParamsFromAuthorizationRequest } from '~/utils/auth/authorization-request.server';
 import { setPlayer } from '~/utils/auth/session.server';
 
 export const meta: V2_MetaFunction = () => {

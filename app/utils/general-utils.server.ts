@@ -2,7 +2,7 @@ import { EntityNotFoundException } from '~/exception/EntityNotFoundException';
 import { Params } from '@remix-run/react';
 import { AuthorizationRequest } from '~/routes/authorize';
 import { User } from '~/utils/auth/user.server';
-import { getSearchParamsFromAuthorizationRequest } from '~/utils/auth/authorization-request.server';
+import { getSearchParamsFromAuthorizationRequest } from '~/utils/auth/authorization.server';
 import { redirect } from '@remix-run/node';
 
 export function requireResult<T>(value: T | undefined | null): T {

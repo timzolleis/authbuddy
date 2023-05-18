@@ -25,6 +25,7 @@
     "concurrently": "^8.0.1",
     "framer-motion": "^10.12.10",
     "isbot": "^3.6.10",
+    "jose": "^4.14.4",
     "lucide-react": "^0.216.0",
     "luxon": "^3.3.0",
     "prettier": "^2.8.8",
