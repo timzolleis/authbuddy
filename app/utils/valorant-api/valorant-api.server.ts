@@ -10,7 +10,13 @@ function getClient() {
 
 export async function getVersion() {
     const client = getClient();
-    return await client
+    return client
         .get<ValorantApiResponse<ValorantApiVersion>>('/version')
         .then((res) => res.data.data);
+}
+
+export async function getPlayerCard(playerCardUuid: string) {
+    return getClient().get<ValorantApiResponse<ValorantApiPlayercard>>(
+        `/playercards/${playerCardUuid}`
+    );
 }

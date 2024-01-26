@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div className={'w-full space-y-1'}>
                 <div className={'flex items-center gap-1'}>
                     <Label>{props.label}</Label>
-                    {props.required && <p className={'text-sm text-red-500'}>*</p>}
+                    {props.required && props.label && <p className={'text-sm text-red-500'}>*</p>}
                 </div>
                 <input
                     type={type}

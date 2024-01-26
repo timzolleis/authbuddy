@@ -1,6 +1,10 @@
-import { getLoginClient } from '~/utils/auth/riot/client.server';
+import { getLoginClient, getRiotGamesApiClient } from '~/utils/auth/riot/client.server';
 import { getMultifactorCookies } from '~/utils/auth/riot/cookies.server';
 import { encryptString } from '~/utils/encryption/encryption';
+import { riotEndpoints } from '~/config/riot-endpoints';
+import { PlayerLoadout } from '~/types/riot/get-player-loadout';
+import { getPlayerCard } from '~/utils/valorant-api/valorant-api.server';
+import { User } from '~/utils/auth/user.server';
 
 type AuthType = 'multifactor' | 'response';
 
@@ -179,7 +183,8 @@ export async function requestAccessTokenWithMultifactorCode({
 }
 
 async function requestEntitlementsToken(accessToken: string) {
-    const client = await getLoginClient(authUrl);
+    const entitlementsUrl = 'https://entitlements.auth.riotgames.com';
+    const client = await getLoginClient(entitlementsUrl);
     const response = await client.post<ValorantEntitlementsResponse>(
         '/api/token/v1',
         {},
@@ -208,13 +213,25 @@ export function requiresMultifactorAuthentication(
     return res.type === 'multifactor';
 }
 
-export async function setRiotUser(accessToken: string) {}
-
-async function requestUserData(accessToken: string) {
-    const client = await getLoginClient(authUrl);
-    const response = await client.get<RSOUserInfo>('/userinfo', {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+export async function getPlayerDetails(accessToken: string) {
+    const entitlement = await requestEntitlementsToken(accessToken);
+    const riotGamesApiClient = await getRiotGamesApiClient({
+        accessToken,
+        entitlementsToken: entitlement,
     });
+    const rsoUserInfo = await riotGamesApiClient
+        .get<RSOUserInfo>(`${authUrl}/userinfo`)
+        .then((res) => res.data);
+
+    console.log('Got client, headers:', riotGamesApiClient.defaults.headers);
+    const playerCardUuid = await riotGamesApiClient
+        .get<PlayerLoadout>(riotEndpoints.playerLoadout(rsoUserInfo.sub))
+        .then((res) => res.data.Identity.PlayerCardID);
+    const playerCard = await getPlayerCard(playerCardUuid).then((res) => res.data);
+    return new User(
+        rsoUserInfo.sub,
+        `${rsoUserInfo.acct.game_name}#${rsoUserInfo.acct.tag_line}`,
+        playerCard.data.displayIcon,
+        'USER'
+    );
 }

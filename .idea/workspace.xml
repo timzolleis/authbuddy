@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add zod for environment variables">
-      <change afterPath="$PROJECT_DIR$/app/utils/env.server.ts" afterDir="false" />
+    <list default="true" id="09e0d9ca-d65c-4e23-9a98-1ce05ce494b1" name="Changes" comment="add full auth functionality and begin adding oauth functionality">
+      <change afterPath="$PROJECT_DIR$/app/components/ui/Card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/auth/oauth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/oauth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authorize.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authorize.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login._index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/login._index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/tailwind.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/auth/authorization-request.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/authorization.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/auth/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/auth/session.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/encryption/encryption.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/flash/session.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/flash/session.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/env.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/env.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/general-utils.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/general-utils.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/unsplash/unsplash.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/unsplash/unsplash.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/vercel/update-edge-config.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/vercel/update-edge-config.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -29,15 +29,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
+        <option value="tsconfig.json" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="add-riot-login" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,31 +56,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/tim/IdeaProjects/authbuddy/app/routes",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\tim\\IdeaProjects\\authbuddy\\node_modules\\prettier",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\tim\\IdeaProjects\\authbuddy\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add-oauth-functionality&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tim/IdeaProjects/authbuddy/app/routes&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\tim\\IdeaProjects\\authbuddy\\node_modules\\prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\tim\\IdeaProjects\\authbuddy\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tim\IdeaProjects\authbuddy\app\routes" />
@@ -145,6 +146,8 @@
       <workItem from="1684147781122" duration="9247000" />
       <workItem from="1684163793985" duration="3909000" />
       <workItem from="1684230662997" duration="3507000" />
+      <workItem from="1684345615322" duration="7000" />
+      <workItem from="1684420463593" duration="4630000" />
     </task>
     <task id="LOCAL-00001" summary="prepare login routes">
       <created>1681241638992</created>
@@ -258,7 +261,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684173225696</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add zod for environment variables">
+      <created>1684332235073</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1684332235073</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add full auth functionality and begin adding oauth functionality">
+      <created>1684342824584</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1684342824584</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +309,8 @@
     <MESSAGE value="restructure ui" />
     <MESSAGE value="add updating and restructure" />
     <MESSAGE value="add zod for environment variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="add zod for environment variables" />
+    <MESSAGE value="add full auth functionality and begin adding oauth functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="add full auth functionality and begin adding oauth functionality" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -35,6 +35,28 @@ export async function getLoginClient(baseUrl?: string) {
     });
 }
 
+export async function getRiotGamesApiClient(
+    {
+        accessToken,
+        entitlementsToken,
+    }: {
+        accessToken: string;
+        entitlementsToken: string;
+    },
+    baseURL?: string
+) {
+    return axios.create({
+        baseURL,
+        httpsAgent: await getAgent(),
+        httpAgent: await getAgent(),
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'X-Riot-Entitlements-JWT': entitlementsToken,
+            ...(await getHeaders()),
+        },
+    });
+}
+
 async function getAgent() {
     const config = await getConfig();
     return new https.Agent({

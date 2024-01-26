@@ -5,11 +5,17 @@ import {
     useNavigation,
     V2_MetaFunction,
 } from '@remix-run/react';
-import { DataFunctionArgs, json } from '@remix-run/node';
+import { DataFunctionArgs, json, redirect } from '@remix-run/node';
 import { Button } from '~/components/ui/Button';
 import { decryptString } from '~/utils/encryption/encryption';
-import { requestAccessTokenWithMultifactorCode } from '~/utils/auth/riot/auth.server';
+import {
+    getPlayerDetails,
+    requestAccessTokenWithMultifactorCode,
+} from '~/utils/auth/riot/auth.server';
 import React, { useRef, useState } from 'react';
+import { getAuthorizationRequest } from '~/utils/auth/temporary-session.server';
+import { redirectToAuthorizationPage } from '~/utils/general-utils.server';
+import { setPlayer } from '~/utils/auth/session.server';
 
 export const meta: V2_MetaFunction = () => {
     return [{ title: 'AuthBuddy | Multifactor' }];
@@ -19,7 +25,6 @@ export const loader = async ({ request }: DataFunctionArgs) => {
     const url = new URL(request.url);
     const codeLength = parseInt(url.searchParams.get('length') || '6');
     const email = url.searchParams.get('email') || 'UNKOWN_EMAIL';
-
     return json({ email, codeLength });
 };
 
@@ -35,15 +40,21 @@ export const action = async ({ request }: DataFunctionArgs) => {
     }
     const cookies = [decryptString(encryptedAsid), decryptString(encryptedClid)];
     const formData = await request.formData();
-    const codeDigits = formData.getAll('multifactorCode');
-    const code = codeDigits.join('');
+    const code = formData.getAll('multifactorCode').join('');
     try {
         const { accessToken } = await requestAccessTokenWithMultifactorCode({ code, cookies });
+        const player = await getPlayerDetails(accessToken);
+        const authorizationRequest = await getAuthorizationRequest(request);
+        if (authorizationRequest) {
+            return redirectToAuthorizationPage(request.url, authorizationRequest, {
+                headers: { 'Set-Cookie': await setPlayer(request, player) },
+            });
+        }
+        return redirect('/', { headers: { 'Set-Cookie': await setPlayer(request, player) } });
     } catch (e) {
+        console.log(e);
         return json({ error: 'The code you entered is incorrect or has been used before.' });
     }
-
-    return null;
 };
 
 const MultifactorLoginPage = () => {
@@ -61,9 +72,7 @@ const MultifactorLoginPage = () => {
             </p>
             <MultifactorCodeInput length={codeLength} />
             <p className={' mt-2 text-center text-sm text-red-500'}>{data?.error}</p>
-            <span className={'mt-5 flex justify-end'}>
-                <Button loading={loading}>{loading ? 'Submitting...' : 'Submit'}</Button>
-            </span>
+            <Button className={'mt-2 w-full'}>{loading ? 'Submitting...' : 'Submit'}</Button>
         </Form>
     );
 };

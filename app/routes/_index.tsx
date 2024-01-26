@@ -22,9 +22,7 @@ export default function Index() {
                         dedicate your time to building features instead of fiddling around with user
                         authentication
                     </h3>
-                    <Button color={'secondary'} external={true}>
-                        GitHub
-                    </Button>
+                    <Button color={'secondary'}>GitHub</Button>
                     <p className={'text-sm text-neutral-500'}>
                         *This project is not affiliated with or endorsed by in any way Riot Games,
                         Inc. <br />
@@ -42,7 +40,7 @@ const FAQComponent = () => {
         <AccordionList className={'mt-2 w-full space-y-2'}>
             {faq.map((item) => (
                 <Accordion key={item.title} className={'rounded-md border-0 bg-neutral-800'}>
-                    <AccordionHeader className={'font-semibold'}>{item.title}</AccordionHeader>
+                    <AccordionHeader className={'px-4 font-semibold'}>{item.title}</AccordionHeader>
                     <AccordionBody className={'text-sm text-neutral-300'}>
                         {item.body}
                     </AccordionBody>
